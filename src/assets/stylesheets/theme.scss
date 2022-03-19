@@ -1,0 +1,25 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+$primary-color: (
+  500: #3F51B5,
+  contrast: (
+    500: white
+  )
+);
+
+$accent-color: (
+  500: #D0B072,
+  contrast: (
+    500: black
+  )
+);
+
+$palette-primary: mat-palette($primary-color, 500);
+$palette-accent: mat-palette($accent-color, 500);
+$theme: mat-light-theme($palette-primary, $palette-accent);
+
+@include angular-material-theme($theme);
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background: rgba(213, 181, 156, 0.11); }
