@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AUTH_ROUTING_CHILDREN } from '../../core/routes/auth.routes';
+import { EVENT_ROUTING, EVENT_ROUTING_CHILDREN } from '../../core/routes/event.routes';
 
 const routes: Routes = [
-  ...AUTH_ROUTING_CHILDREN
+  ...EVENT_ROUTING_CHILDREN
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AuthRoutingModule { }
+export class EventRoutingModule { }

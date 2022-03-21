@@ -16,8 +16,6 @@ import { SignInComponent } from './sign-in.component';
 import { AuthRoutingModule } from '../auth-routing.module';
 
 describe('SignInComponent', () => {
-  let component: SignInComponent;
-  let fixture: ComponentFixture<SignInComponent>;
   let httpClientSpy: jasmine.SpyObj<HttpClient>;
 
   beforeEach(async () => {
@@ -45,19 +43,20 @@ describe('SignInComponent', () => {
     }).compileComponents();
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(SignInComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  beforeEach(() => { });
 
   it('should create', () => {
+    const fixture = TestBed.createComponent(SignInComponent);
+    const component = fixture.componentInstance;
+    fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 
   it('submit data to sign in', () => {
     const fixture = TestBed.createComponent(SignInComponent);
     const app = fixture.componentInstance;
+    fixture.detectChanges();
+    app.ngOnInit();
 
     app.form.get('userName').setValue('fakeUser');
     app.form.get('password').setValue('password');
@@ -73,6 +72,8 @@ describe('SignInComponent', () => {
   it('submit data to sign in with bat information', () => {
     const fixture = TestBed.createComponent(SignInComponent);
     const app = fixture.componentInstance;
+    fixture.detectChanges();
+    app.ngOnInit();
 
     app.form.get('userName').setValue('fakeUser');
     app.form.get('password').setValue('');
@@ -84,6 +85,8 @@ describe('SignInComponent', () => {
   it('validate required fields', () => {
     const fixture = TestBed.createComponent(SignInComponent);
     const app = fixture.componentInstance;
+    fixture.detectChanges();
+    app.ngOnInit();
 
     app.form.markAllAsTouched();
     fixture.detectChanges();
@@ -96,6 +99,7 @@ describe('SignInComponent', () => {
   it(`submit data to sign in but when user name doesn't exist`, () => {
     const fixture = TestBed.createComponent(SignInComponent);
     const app = fixture.componentInstance;
+    app.ngOnInit();
 
     app.form.get('userName').setValue('fakeUser');
     app.form.get('password').setValue('password');
@@ -120,6 +124,7 @@ describe('SignInComponent', () => {
   it(`submit data to sign in but when user name doesn't exist`, () => {
     const fixture = TestBed.createComponent(SignInComponent);
     const app = fixture.componentInstance;
+    app.ngOnInit();
 
     app.form.get('userName').setValue('fakeUser');
     app.form.get('password').setValue('password');

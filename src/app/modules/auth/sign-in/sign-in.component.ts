@@ -19,10 +19,10 @@ export class SignInComponent implements OnInit {
   ) {
     this.hide = true;
     this.load = false;
-    this.createForm();
   }
 
   ngOnInit(): void {
+    this.createForm();
   }
 
   signIn(): void {

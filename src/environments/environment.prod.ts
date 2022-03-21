@@ -1,3 +1,6 @@
 export const environment = {
-  production: true
+  production: true,
+  baseUrl: 'http://localhost:5000/rest',
+  validateTokenUrl: '',
+  refreshTokenUrl: ''
 };

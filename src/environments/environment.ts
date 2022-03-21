@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  baseUrl: 'http://localhost:5000/rest',
+  validateTokenUrl: `http://localhost:5000/rest/auth/validate-token`,
+  refreshTokenUrl: `http://localhost:5000/rest/auth/refresh-token`
 };
 
 /*
