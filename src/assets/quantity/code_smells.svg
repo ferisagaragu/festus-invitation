@@ -15,8 +15,8 @@
     <g fill="#fff" font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="11" text-anchor="left">
         <text x="26" y="15" textLength="65" fill="#010101" fill-opacity=".3">code smells</text>
         <text x="26" y="14" textLength="65">code smells</text>
-        <text x="103" y="15" textLength="7" fill="#010101" fill-opacity=".3">4</text>
-        <text x="103" y="14" textLength="7">4</text>
+        <text x="103" y="15" textLength="7" fill="#010101" fill-opacity=".3">2</text>
+        <text x="103" y="14" textLength="7">2</text>
     </g>
     <g fill="#4e9bcd">
         <path d="M17.975 16.758h-.815c0-6.557-5.411-11.893-12.062-11.893v-.813c7.102 0 12.877 5.7 12.877 12.706z"/>
