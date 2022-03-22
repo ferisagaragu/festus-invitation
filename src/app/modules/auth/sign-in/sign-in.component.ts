@@ -30,7 +30,6 @@ export class SignInComponent implements OnInit {
       return;
     }
 
-    console.log(this.form.value)
     this.load = true;
     this.form.disable();
 
@@ -41,7 +40,6 @@ export class SignInComponent implements OnInit {
       this.load = false;
       this.form.enable();
     }, ({ error }) => {
-      console.log(error)
       this.load = false;
       this.form.enable();
 

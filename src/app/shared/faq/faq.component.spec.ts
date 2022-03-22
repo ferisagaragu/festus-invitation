@@ -18,8 +18,7 @@ describe('FaqComponent', () => {
       providers: [
         { provide: MatDialog, useValue: matDialog }
       ]
-    })
-    .compileComponents();
+    }).compileComponents();
   });
 
   it('should create', () => {

@@ -11,7 +11,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  signIn(userData: any): Observable<any> {
+  signIn(userData: any): Observable<UserModel> {
     return this.http.post(
       'http://localhost:5000/rest/auth/sign-in',
       userData
