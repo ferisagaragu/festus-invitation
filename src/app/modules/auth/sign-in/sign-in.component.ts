@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SessionService } from 'ng-urxnium';
 import { AuthService } from '../../../core/http/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
@@ -15,7 +17,9 @@ export class SignInComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private sessionService: SessionService,
+    private router: Router
   ) {
     this.hide = true;
     this.load = false;
@@ -36,9 +40,8 @@ export class SignInComponent implements OnInit {
     this.authService.signIn(
       this.form.value
     ).subscribe(resp => {
-      //resp
-      this.load = false;
-      this.form.enable();
+      this.sessionService.signIn(resp.session, resp);
+      this.router.navigate(['/event']);
     }, ({ error }) => {
       this.load = false;
       this.form.enable();

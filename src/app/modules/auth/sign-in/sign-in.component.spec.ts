@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
@@ -11,15 +11,22 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { Router } from '@angular/router';
 import { of, throwError } from 'rxjs';
+import { SessionService, UrxSessionModule } from 'ng-urxnium';
 import { SignInComponent } from './sign-in.component';
 import { AuthRoutingModule } from '../auth-routing.module';
 
 describe('SignInComponent', () => {
   let httpClientSpy: jasmine.SpyObj<HttpClient>;
+  let sessionService: jasmine.SpyObj<SessionService>;
+  let router = {
+    navigate: jasmine.createSpy('navigate')
+  };
 
   beforeEach(async () => {
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['post']);
+    sessionService = jasmine.createSpyObj('SessionService', ['signIn']);
 
     await TestBed.configureTestingModule({
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
@@ -35,15 +42,23 @@ describe('SignInComponent', () => {
         MatFormFieldModule,
         MatToolbarModule,
         MatIconModule,
-        MatProgressBarModule
+        MatProgressBarModule,
+        UrxSessionModule
       ],
       providers: [
-        { provide: HttpClient, useValue: httpClientSpy }
+        {
+          provide: HttpClient,
+          useValue: httpClientSpy
+        },{
+          provide: SessionService,
+          useValue: sessionService
+        }, {
+          provide: Router,
+          useValue: router
+        }
       ]
     }).compileComponents();
   });
-
-  beforeEach(() => { });
 
   it('should create', () => {
     const fixture = TestBed.createComponent(SignInComponent);
@@ -61,12 +76,13 @@ describe('SignInComponent', () => {
     app.form.get('userName').setValue('fakeUser');
     app.form.get('password').setValue('password');
     httpClientSpy.post.and.returnValue(of({ }));
+    sessionService.signIn.and.returnValue(null);
     app.signIn();
 
+    expect(router.navigate).toHaveBeenCalledWith(['/event']);
     expect(app.form.value).toEqual({ userName: 'fakeUser', password: 'password' });
-    expect(httpClientSpy.post.calls.count())
-      .withContext('one call')
-      .toBe(1);
+    expect(httpClientSpy.post.calls.count()).toBe(1);
+    expect(sessionService.signIn.calls.count()).toBe(1);
   });
 
   it('submit data to sign in with bat information', () => {
@@ -116,9 +132,7 @@ describe('SignInComponent', () => {
     app.signIn();
 
     expect(app.form.value).toEqual({ userName: 'fakeUser', password: 'password' });
-    expect(httpClientSpy.post.calls.count())
-      .withContext('one call')
-      .toBe(1);
+    expect(httpClientSpy.post.calls.count()).toBe(1);
   });
 
   it(`submit data to sign in but when user name doesn't exist`, () => {
@@ -141,9 +155,7 @@ describe('SignInComponent', () => {
     app.signIn();
 
     expect(app.form.value).toEqual({ userName: 'fakeUser', password: 'password' });
-    expect(httpClientSpy.post.calls.count())
-      .withContext('one call')
-      .toBe(1);
+    expect(httpClientSpy.post.calls.count()).toBe(1);
   });
 
 });

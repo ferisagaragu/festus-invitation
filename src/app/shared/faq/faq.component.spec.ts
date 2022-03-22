@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { MatDialog } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FaqComponent } from './faq.component';
 
 describe('FaqComponent', () => {
@@ -11,6 +11,7 @@ describe('FaqComponent', () => {
     matDialog = jasmine.createSpyObj('MatDialog', ['open']);
 
     await TestBed.configureTestingModule({
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
       declarations: [ FaqComponent ],
       imports: [
         BrowserAnimationsModule
