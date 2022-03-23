@@ -1,4 +1,10 @@
 # FestusInvitation
+[![Quality Gate Status](https://festus-invitation.web.app/assets/quantity/alert_status.svg)](http://localhost:9000/dashboard?id=festus-invitation)
+[![Quality Gate Status](https://festus-invitation.web.app/assets/quantity/bugs.svg)](http://localhost:9000/dashboard?id=festus-invitation)
+[![Quality Gate Status](https://festus-invitation.web.app/assets/quantity/code_smells.svg)](http://localhost:9000/dashboard?id=festus-invitation)
+[![Quality Gate Status](https://festus-invitation.web.app/assets/quantity/coverage.svg)](http://localhost:9000/dashboard?id=festus-invitation)
+[![Quality Gate Status](https://festus-invitation.web.app/assets/quantity/duplicated_lines_density.svg)](http://localhost:9000/dashboard?id=festus-invitation)
+[![Quality Gate Status](https://festus-invitation.web.app/assets/quantity/vulnerabilities.svg)](http://localhost:9000/dashboard?id=festus-invitation)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.0.
 
