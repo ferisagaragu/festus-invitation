@@ -4,6 +4,7 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { EventService } from './event.service';
 import { EventModel } from '../models/event.model';
+import { ServerErrorEnum } from '../enum/server-error.enum';
 
 describe('EventService', () => {
 
@@ -98,7 +99,7 @@ describe('EventService', () => {
     eventService.findAllEvents().subscribe(
       _ => done.fail,
       error => {
-        expect(error).toContain('Oops parece que hay un error en nuestros servidores, inténtalo mas tarde');
+        expect(error).toContain(ServerErrorEnum.message);
         done();
       }
     );

@@ -4,6 +4,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { of, throwError } from 'rxjs';
 import { AuthService } from './auth.service';
 import { UserModel } from '../models/user.model';
+import { ServerErrorEnum } from '../enum/server-error.enum';
 
 describe('AuthService', () => {
   let httpClientSpy: jasmine.SpyObj<HttpClient>;
@@ -130,7 +131,7 @@ describe('AuthService', () => {
     }).subscribe(
       _ => done.fail,
       error => {
-        expect(error).toContain('Oops parece que hay un error en nuestros servidores, inténtalo mas tarde');
+        expect(error).toContain(ServerErrorEnum.message);
         done();
       }
     );
