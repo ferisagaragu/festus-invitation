@@ -7,7 +7,7 @@
     "build": "ng build",
     "build:sonar": "npm run test:sonar && ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test --no-watch",
+    "test": "ng test --no-watch --browsers ChromeHeadless",
     "test:watch": "ng test --no-watch",
     "test:coverage": "ng test --code-coverage",
     "test:sonar": "ng test --no-watch --code-coverage && sonar-scanner && java -jar sonar_quality.jar \"http://localhost:9000\" \"festus-invitation\" \"f9a0ee4fc10a30770c82314092c4b03d3e871ba2\" \"src/assets/quantity\" \"src/app/core/data\"",
