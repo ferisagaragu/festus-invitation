@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  baseUrl: 'http://localhost:5000/rest',
-  validateTokenUrl: `http://localhost:5000/rest/auth/validate-token`,
-  refreshTokenUrl: `http://localhost:5000/rest/auth/refresh-token`
+  baseUrl: 'https://festus-invitation-rest.herokuapp.com/rest',
+  validateTokenUrl: `https://festus-invitation-rest.herokuapp.com/rest/auth/validate-token`,
+  refreshTokenUrl: `https://festus-invitation-rest.herokuapp.com/rest/auth/refresh-token`
 };

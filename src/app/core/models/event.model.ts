@@ -3,6 +3,7 @@ export class EventModel {
   uuid: string;
   name: string;
   description: string;
+  price: number;
   urlDataBase: string;
   endPointInvitation: string;
   primaryColor: string;
