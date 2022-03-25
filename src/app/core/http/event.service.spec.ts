@@ -61,14 +61,14 @@ describe('EventService', () => {
       }
     );
 
-    expect(httpClientSpy.get.calls.count())
-      .withContext('one call')
-      .toBe(1);
+    expect(httpClientSpy.get.calls.count()).toBe(1);
   });
 
   it(`findAllEvents unauthorized call`, (done: DoneFn) => {
     const error = new HttpErrorResponse({
-      error: 'No esta autorizado para realizar esta acción',
+      error: {
+        message: 'No esta autorizado para realizar esta acción'
+      },
       status: 401,
       statusText: 'Unauthorized',
       url: 'http://fake.com'
@@ -78,14 +78,32 @@ describe('EventService', () => {
     eventService.findAllEvents().subscribe(
       _ => done.fail,
       error => {
-        expect(error.error).toContain('No esta autorizado para realizar esta acción');
+        expect(error).toContain('No esta autorizado para realizar esta acción');
         done();
       }
     );
 
-    expect(httpClientSpy.get.calls.count())
-      .withContext('one call')
-      .toBe(1);
+    expect(httpClientSpy.get.calls.count()).toBe(1);
+  });
+
+  it(`findAllEvents server not response call`, (done: DoneFn) => {
+    const error = new HttpErrorResponse({
+      error: '',
+      status: 0,
+      statusText: 'Unknown Error',
+      url: 'http://fake.com'
+    });
+    httpClientSpy.get.and.returnValue(throwError(error));
+
+    eventService.findAllEvents().subscribe(
+      _ => done.fail,
+      error => {
+        expect(error).toContain('Oops parece que hay un error en nuestros servidores, inténtalo mas tarde');
+        done();
+      }
+    );
+
+    expect(httpClientSpy.get.calls.count()).toBe(1);
   });
 
   it(`findAllEvents validate resp call`, (done: DoneFn) => {
@@ -93,19 +111,15 @@ describe('EventService', () => {
 
     eventService.findAllEvents().subscribe(
       resp => {
-        expect(resp)
-          .withContext('expected EventModel')
-          .toEqual(undefined);
+        expect(resp).toEqual(undefined);
         done();
       },
-      error => {
+      _ => {
         done.fail;
       }
     );
 
-    expect(httpClientSpy.get.calls.count())
-      .withContext('one call')
-      .toBe(1);
+    expect(httpClientSpy.get.calls.count()).toBe(1);
   });
 
 });
