@@ -55,7 +55,7 @@
           [disabled]="load"
           (click)="hide = !hide"
         >
-          <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+          <mat-icon class="password-icon">{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
         </button>
 
         <mat-hint>
@@ -85,6 +85,12 @@
         </button>
       </div>
     </form>
+
+    <div class="ps-4 pe-4 text-error">
+      <small>
+        {{ error }}
+      </small>
+    </div>
 
     <div class="legend">
       powered by Pechblenda

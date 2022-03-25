@@ -21,5 +21,30 @@ $theme: mat-light-theme($palette-primary, $palette-accent);
 
 @include angular-material-theme($theme);
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background: rgba(213, 181, 156, 0.11); }
+* {
+  font-family: 'Raleway', Helvetica, Arial, Verdana, Tahoma, sans-serif !important;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Raleway', Helvetica, Arial, Verdana, Tahoma, sans-serif !important;
+  background: rgba(213, 181, 156, 0.11);
+}
+
+.material-icons {
+  font-family: 'Material Icons', Helvetica, Arial, Verdana, Tahoma, sans-serif !important;
+}
+
+.card-error {
+  background: #F44336;
+  color: white;
+  font-family: 'RedHatMono', Helvetica, Arial, Verdana, Tahoma, sans-serif !important;
+}
+
+.text-error {
+  color: #F44336 !important;
+}

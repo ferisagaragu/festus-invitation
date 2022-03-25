@@ -10,6 +10,8 @@ import { EventModel } from '../../../core/models/event.model';
 export class ListEventComponent implements OnInit {
 
   events: Array<EventModel>;
+  load: boolean;
+  error: string;
 
   constructor(private eventService: EventService) { }
 
@@ -18,9 +20,12 @@ export class ListEventComponent implements OnInit {
   }
 
   findAllEvents(): void {
+    this.load = true;
+
     this.eventService.findAllEvents().subscribe(resp => {
       this.events = resp;
-    });
+      this.load = false;
+    }, error => this.error = error );
   }
 
 }

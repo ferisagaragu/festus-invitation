@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { of } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { of, throwError } from 'rxjs';
 import { ListEventComponent } from './list-event.component';
 
 describe('ListEventComponent', () => {
@@ -47,6 +47,22 @@ describe('ListEventComponent', () => {
     let component = fixture.componentInstance;
     fixture.detectChanges();
     expect(component).toBeTruthy();
+  });
+
+  it('should create but the server doesn\'t response', () => {
+    const error = new HttpErrorResponse({
+      error: '',
+      status: 0,
+      statusText: 'Unknown Error',
+      url: 'http://fake.com'
+    });
+    httpClientSpy.get.and.returnValue(throwError(error));
+
+    let fixture = TestBed.createComponent(ListEventComponent);
+    let component = fixture.componentInstance;
+    fixture.detectChanges();
+
+    expect(component.error).toContain('Oops parece que hay un error en nuestros servidores, inténtalo mas tarde');
   });
 
 });

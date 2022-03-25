@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 import { EventRoutingModule } from './event-routing.module';
 import { ListEventComponent } from './list-event/list-event.component';
@@ -18,7 +19,8 @@ import { ItemEventComponent } from './item-event/item-event.component';
     EventRoutingModule,
     MatButtonModule,
     MatCardModule,
-    MatChipsModule
+    MatChipsModule,
+    MatProgressBarModule
   ]
 })
 export class EventModule { }

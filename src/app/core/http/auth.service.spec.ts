@@ -66,9 +66,7 @@ describe('AuthService', () => {
       }
     );
 
-    expect(httpClientSpy.post.calls.count())
-      .withContext('one call')
-      .toBe(1);
+    expect(httpClientSpy.post.calls.count()).toBe(1);
   });
 
   it(`sigIn empty data call`, (done: DoneFn) => {
@@ -109,14 +107,35 @@ describe('AuthService', () => {
     }).subscribe(
       _ => done.fail,
       error => {
-        expect(error.error).toContain('No se encuentra el usuario');
+        expect(error).toContain('No se encuentra el usuario');
         done();
       }
     );
 
-    expect(httpClientSpy.post.calls.count())
-      .withContext('one call')
-      .toBe(1);
+    expect(httpClientSpy.post.calls.count()).toBe(1);
+  });
+
+  it(`signIn when server doesn't response call`, (done: DoneFn) => {
+    const error = new HttpErrorResponse({
+      error: undefined,
+      status: 0,
+      statusText: 'Unknown Error',
+      url: 'http://fake.com'
+    });
+    httpClientSpy.post.and.returnValue(throwError(error));
+
+    authService.signIn({
+      userName: 'fake',
+      password: 'fakePassword'
+    }).subscribe(
+      _ => done.fail,
+      error => {
+        expect(error).toContain('Oops parece que hay un error en nuestros servidores, inténtalo mas tarde');
+        done();
+      }
+    );
+
+    expect(httpClientSpy.post.calls.count()).toBe(1);
   });
 
 });

@@ -156,4 +156,24 @@ describe('SignInComponent', () => {
     expect(httpClientSpy.post.calls.count()).toBe(1);
   });
 
+  it(`submit data to sign in but when user name doesn't exist`, () => {
+    const fixture = TestBed.createComponent(SignInComponent);
+    const app = fixture.componentInstance;
+    app.ngOnInit();
+
+    app.form.get('userName').setValue('fakeUser');
+    app.form.get('password').setValue('password');
+    const error = new HttpErrorResponse({
+      status: 0,
+      statusText: 'Unknown Error',
+      url: 'http://fake.com'
+    });
+    httpClientSpy.post.and.returnValue(throwError(error));
+    app.signIn();
+    fixture.detectChanges();
+
+    expect(app.error).toEqual('Oops parece que hay un error en nuestros servidores, inténtalo mas tarde');
+    expect(httpClientSpy.post.calls.count()).toBe(1);
+  });
+
 });

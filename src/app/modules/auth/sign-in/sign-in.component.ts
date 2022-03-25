@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { SessionService } from 'ng-urxnium';
 import { AuthService } from '../../../core/http/auth.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
@@ -13,6 +13,7 @@ export class SignInComponent implements OnInit {
 
   hide: boolean;
   load: boolean;
+  error: string;
   form: FormGroup;
 
   constructor(
@@ -42,7 +43,7 @@ export class SignInComponent implements OnInit {
     ).subscribe(resp => {
       this.sessionService.signIn(resp.session, resp);
       this.router.navigate(['/event']);
-    }, ({ error }) => {
+    }, error => {
       this.load = false;
       this.form.enable();
 
@@ -53,6 +54,8 @@ export class SignInComponent implements OnInit {
       if (error.fieldNameError === 'password')
         this.form.get(error.fieldNameError)
           .setErrors({ server: error.message });
+
+      if (!error.fieldNameError) this.error = error;
     });
 
   }

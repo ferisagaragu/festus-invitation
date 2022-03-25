@@ -16,7 +16,13 @@ export class AuthService {
     return this.http.post(
       `${environment.baseUrl}/auth/sign-in`,
       userData
-    ).pipe(map((resp: any) => new UserModel(resp?.data)))
+    ).pipe(
+      map((resp: any) => new UserModel(resp?.data)),
+      catchError(err => err.statusText !== ServerErrorEnum.unknownError ?
+        throwError(err.error) :
+        throwError(ServerErrorEnum.message)
+      )
+    );
   }
 
 }
