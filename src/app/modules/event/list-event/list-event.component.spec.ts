@@ -3,6 +3,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { of, throwError } from 'rxjs';
 import { ListEventComponent } from './list-event.component';
+import { ServerErrorEnum } from '../../../core/enum/server-error.enum';
 
 describe('ListEventComponent', () => {
   let httpClientSpy: jasmine.SpyObj<HttpClient>;
@@ -62,7 +63,7 @@ describe('ListEventComponent', () => {
     let component = fixture.componentInstance;
     fixture.detectChanges();
 
-    expect(component.error).toContain('Oops parece que hay un error en nuestros servidores, inténtalo mas tarde');
+    expect(component.error).toContain(ServerErrorEnum.message);
   });
 
 });

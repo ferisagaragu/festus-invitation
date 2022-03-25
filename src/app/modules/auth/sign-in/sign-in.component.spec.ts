@@ -15,6 +15,7 @@ import { of, throwError } from 'rxjs';
 import { SessionService, UrxSessionModule } from 'ng-urxnium';
 import { SignInComponent } from './sign-in.component';
 import { AuthRoutingModule } from '../auth-routing.module';
+import { ServerErrorEnum } from '../../../core/enum/server-error.enum';
 
 describe('SignInComponent', () => {
   let httpClientSpy: jasmine.SpyObj<HttpClient>;
@@ -172,7 +173,7 @@ describe('SignInComponent', () => {
     app.signIn();
     fixture.detectChanges();
 
-    expect(app.error).toEqual('Oops parece que hay un error en nuestros servidores, inténtalo mas tarde');
+    expect(app.error).toEqual(ServerErrorEnum.message);
     expect(httpClientSpy.post.calls.count()).toBe(1);
   });
 
