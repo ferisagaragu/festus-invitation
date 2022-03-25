@@ -1,0 +1,29 @@
+<mat-toolbar
+  *ngIf="showToolbar || loadApp"
+  color="accent"
+>
+  <div *ngIf="!loadApp" class="row w-100">
+    <div class="col-md-6">
+      <img
+        class="user-icon"
+        alt="user photo"
+        matTooltipPosition="right"
+        [matTooltip]="user.name + ' ' + user.surname + ' ' + user.motherSurname"
+        [src]="user.photo"
+      >
+    </div>
+
+    <div class="col-md-6 text-end">
+      <em
+        class="mdi mdi-logout mdi-24px sign-out-icon"
+        matTooltip="Cerrar sesión"
+        matTooltipPosition="left"
+        (click)="signOut()"
+      >
+      </em>
+    </div>
+  </div>
+</mat-toolbar>
+
+<div *ngIf="showToolbar || loadApp" class="phantom-toolbar"></div>
+<mat-progress-bar *ngIf="loadApp" mode="indeterminate"></mat-progress-bar>

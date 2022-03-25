@@ -5,7 +5,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -40,7 +39,6 @@ describe('SignInComponent', () => {
         MatInputModule,
         MatButtonModule,
         MatFormFieldModule,
-        MatToolbarModule,
         MatIconModule,
         MatProgressBarModule,
         UrxSessionModule
@@ -52,7 +50,7 @@ describe('SignInComponent', () => {
         },{
           provide: SessionService,
           useValue: sessionService
-        }, {
+        },{
           provide: Router,
           useValue: router
         }
@@ -106,7 +104,7 @@ describe('SignInComponent', () => {
 
     app.form.markAllAsTouched();
     fixture.detectChanges();
-    const errors = fixture.nativeElement.getElementsByClassName('mat-error')
+    const errors = fixture.nativeElement.getElementsByClassName('mat-error');
 
     expect(errors[0].innerText.trim()).toBe('El usuario es requerido');
     expect(errors[1].innerText.trim()).toBe('La contraseña es requerida');

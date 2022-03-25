@@ -1,0 +1,43 @@
+<mat-card
+  class="row mt-4 card-background"
+  [style.color]="event.accentColor ? event.accentColor : '#fff'"
+>
+  <div class="col-12 row">
+    <div class="col-6">
+      <div class="icon" [style.background]="event.primaryColor ? event.primaryColor : '#fff'">
+        <em class="mdi mdi-calendar mdi-36px event-icon"></em>
+      </div>
+
+      <span class="title">
+        {{ event.name }}
+      </span>
+    </div>
+
+    <div class="col-6 text-end">
+      <button mat-stroked-button>
+        <em class="mdi mdi-eye"></em>
+        Ver el evento
+      </button>
+    </div>
+
+    <hr class="mt-3">
+  </div>
+
+  <div class="col-12 mt-2">
+    {{ event.description }}
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-6">
+      <mat-chip-list>
+        <mat-chip color="primary" selected>
+          {{ event.price | currency }}
+        </mat-chip>
+      </mat-chip-list>
+    </div>
+
+    <div class="col-6 text-end">
+      {{ event.endDate | date: 'EEEE dd \'de\' MMMM \'del\' yyyy' }}
+    </div>
+  </div>
+</mat-card>
