@@ -10,7 +10,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 [![Quality Gate Status](https://festus-invitation.web.app/assets/quantity/coverage.svg)](http://localhost:9000/dashboard?id=festus-invitation)
 [![Quality Gate Status](https://festus-invitation.web.app/assets/quantity/duplicated_lines_density.svg)](http://localhost:9000/dashboard?id=festus-invitation)
 [![Quality Gate Status](https://festus-invitation.web.app/assets/quantity/vulnerabilities.svg)](http://localhost:9000/dashboard?id=festus-invitation)
-[![Node.js CI](https://github.com/ferisagaragu/festus-invitation/actions/workflows/node.js.yml/badge.svg)](https://github.com/ferisagaragu/festus-invitation/actions/workflows/node.js.yml)
+[![Node.js CI](https://github.com/ferisagaragu/festus-invitation/actions/workflows/node.js.yml/badge.svg?branch=master)](https://github.com/ferisagaragu/festus-invitation/actions/workflows/node.js.yml)
 
 ## Development server
 
