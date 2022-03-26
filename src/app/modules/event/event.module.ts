@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatIconModule } from '@angular/material/icon';
 
 import { EventRoutingModule } from './event-routing.module';
 import { ListEventComponent } from './list-event/list-event.component';
@@ -20,7 +21,8 @@ import { ItemEventComponent } from './item-event/item-event.component';
     MatButtonModule,
     MatCardModule,
     MatChipsModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatIconModule
   ]
 })
 export class EventModule { }
