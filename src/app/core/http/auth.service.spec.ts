@@ -120,7 +120,7 @@ describe('AuthService', () => {
     const error = new HttpErrorResponse({
       error: undefined,
       status: 0,
-      statusText: 'Unknown Error',
+      statusText: ServerErrorEnum.unknownError,
       url: 'http://fake.com'
     });
     httpClientSpy.post.and.returnValue(throwError(error));

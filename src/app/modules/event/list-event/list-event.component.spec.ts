@@ -54,7 +54,7 @@ describe('ListEventComponent', () => {
     const error = new HttpErrorResponse({
       error: '',
       status: 0,
-      statusText: 'Unknown Error',
+      statusText: ServerErrorEnum.unknownError,
       url: 'http://fake.com'
     });
     httpClientSpy.get.and.returnValue(throwError(error));

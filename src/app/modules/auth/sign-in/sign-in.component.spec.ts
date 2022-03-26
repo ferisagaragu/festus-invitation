@@ -166,7 +166,7 @@ describe('SignInComponent', () => {
     app.form.get('password').setValue('password');
     const error = new HttpErrorResponse({
       status: 0,
-      statusText: 'Unknown Error',
+      statusText: ServerErrorEnum.unknownError,
       url: 'http://fake.com'
     });
     httpClientSpy.post.and.returnValue(throwError(error));
