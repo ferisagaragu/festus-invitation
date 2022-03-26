@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "firebase": "firebase",
     "start": "ng serve",
     "build": "ng build",
     "build:sonar": "npm run test:sonar && ng build",
@@ -11,7 +12,8 @@
     "test:watch": "ng test",
     "test:coverage": "ng test --code-coverage",
     "test:sonar": "ng test --no-watch --code-coverage && sonar-scanner && java -jar sonar_quality.jar \"http://localhost:9000\" \"festus-invitation\" \"f9a0ee4fc10a30770c82314092c4b03d3e871ba2\" \"src/assets/quantity\" \"src/app/core/data\"",
-    "db": "json-server .data/db.json -w"
+    "db": "json-server .data/db.json -w",
+    "deploy": "firebase deploy"
   },
   "private": true,
   "dependencies": {
@@ -41,6 +43,7 @@
     "@angular/compiler-cli": "~12.2.0",
     "@types/jasmine": "~3.8.0",
     "@types/node": "^12.11.1",
+    "firebase-tools": "^10.5.0",
     "jasmine-core": "~3.8.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",
