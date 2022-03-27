@@ -6,12 +6,11 @@
     "firebase": "firebase",
     "start": "ng serve",
     "build": "ng build",
-    "build:sonar": "npm run test:sonar && ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test --no-watch --browsers ChromeHeadless",
     "test:watch": "ng test",
     "test:coverage": "ng test --code-coverage",
-    "test:sonar": "ng test --no-watch --code-coverage && sonar-scanner && java -jar sonar_quality.jar \"http://localhost:9000\" \"festus-invitation\" \"f9a0ee4fc10a30770c82314092c4b03d3e871ba2\" \"src/assets/quantity\" \"src/app/core/data\"",
+    "test:report": "ng test --no-watch --code-coverage --browsers ChromeHeadless",
     "db": "json-server .data/db.json -w",
     "deploy": "firebase deploy --token 1//0f8L3loygDY6OCgYIARAAGA8SNwF-L9Ir0yF8bDF2hemhExs87HDXr4PUDSgZ9GkFp6JpZkT80b5sJm-eo7u20BivaXWsWUuIfc4"
   },
