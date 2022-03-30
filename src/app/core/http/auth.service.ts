@@ -15,7 +15,7 @@ export class AuthService {
 
   signIn(userData: any): Observable<UserModel> {
     return this.http.post(
-      `https://festus-invitation-rest.herokuapp.com/rest/auth/sign-in`,
+      `${environment.baseUrl}/auth/sign-in`,
       userData
     ).pipe(
       map((resp: any) => new UserModel(resp?.data)),

@@ -7,12 +7,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test --no-watch --browsers ChromeHeadless",
-    "test:watch": "ng test",
-    "test:coverage": "ng test --code-coverage",
-    "test:report": "ng test --no-watch --code-coverage --browsers ChromeHeadless",
-    "db": "json-server .data/db.json -w",
-    "deploy": "firebase deploy --token 1//0f8L3loygDY6OCgYIARAAGA8SNwF-L9Ir0yF8bDF2hemhExs87HDXr4PUDSgZ9GkFp6JpZkT80b5sJm-eo7u20BivaXWsWUuIfc4"
+    "test": "ng test --no-watch --code-coverage --browsers ChromeHeadless",
+    "test:watch": "ng test --code-coverage",
+    "db": "json-server .data/db.json -w"
   },
   "private": true,
   "dependencies": {
