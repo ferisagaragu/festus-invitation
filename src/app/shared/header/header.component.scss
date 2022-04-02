@@ -11,14 +11,23 @@ mat-toolbar {
   height: 64px;
 }
 
-.user-icon {
-  border-radius: 10px;
-  width: 50px;
-}
-
 .sign-out-icon {
   margin-top: 8px;
   position: absolute;
   color: white;
   cursor: pointer;
+}
+
+.small-icon {
+  width: 45px;
+  border-radius: 45px;
+  margin-top: -5px !important;
+}
+
+.app-title {
+  font-family: 'SendFlowers', Helvetica, Arial, Verdana, Tahoma, sans-serif !important;
+  font-size: 26px;
+  margin-top: 8px;
+  color: whitesmoke;
+  display: initial;
 }

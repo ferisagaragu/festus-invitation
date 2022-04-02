@@ -10,6 +10,14 @@
 
       <span class="title">
         {{ event?.name }}
+        <span
+          *ngIf="event.customTicket"
+          class="pointer"
+          matTooltipPosition="right"
+          [matTooltip]="'Invitación con tickets presonalizados'"
+        >
+          🎫
+        </span>
       </span>
     </div>
 
@@ -28,7 +36,7 @@
   </div>
 
   <div class="row mt-4">
-    <div class="col-6">
+    <div class="col-3">
       <mat-chip-list>
         <mat-chip color="primary" selected>
           {{ event?.price | currency }}
@@ -36,7 +44,17 @@
       </mat-chip-list>
     </div>
 
-    <div class="col-6 text-end">
+    <div class="col-5">
+      <small *ngIf="event.missingDay > 0">Faltan {{ event.missingDay }} dias</small>
+      <small *ngIf="event.missingDay < 0">El periodo a terminado</small>
+      <mat-progress-bar
+        color="primary"
+        [value]="event.percentage"
+      >
+      </mat-progress-bar>
+    </div>
+
+    <div class="col-4 text-end">
       {{ event?.endDate | date: 'EEEE dd \'de\' MMMM \'del\' yyyy' }}
     </div>
   </div>

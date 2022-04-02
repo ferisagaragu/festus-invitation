@@ -15,7 +15,7 @@ export class AuthService {
 
   signIn(userData: any): Observable<UserModel> {
     return this.http.post(
-      `${environment.baseUrl}/auth/sign-in`,
+      `http://localhost:5000/auth/sign-in`,
       userData
     ).pipe(
       map((resp: any) => new UserModel(resp?.data)),

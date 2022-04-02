@@ -1,0 +1,97 @@
+<div class="row">
+  <div class="col-12">
+    <h3>Configuraciones de usuario</h3>
+    <hr>
+  </div>
+
+  <div class="col-12">
+    <form [formGroup]="form" (ngSubmit)="save()">
+      <app-input-user-icon
+        [photo]="user.photo"
+        formControlName="photo"
+      >
+      </app-input-user-icon>
+
+      <mat-form-field
+        class="w-100 pt-5 pb-3"
+        appearance="outline"
+        color="accent"
+      >
+        <mat-label>Nombre</mat-label>
+
+        <input
+          matInput
+          placeholder="Usuario o correo"
+          formControlName="name"
+        >
+
+        <mat-error>
+          <em class="mdi mdi-information"></em>
+          El nombre es requerido
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field
+        class="w-100 pb-4"
+        appearance="outline"
+        color="accent"
+      >
+        <mat-label>Apellido paterno</mat-label>
+
+        <input
+          matInput
+          placeholder="Usuario o correo"
+          formControlName="surname"
+        >
+
+        <mat-error>
+          <em class="mdi mdi-information"></em>
+          El apellido paterno es requerido
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field
+        class="w-100 pb-4"
+        appearance="outline"
+        color="accent"
+      >
+        <mat-label>Apellido materno</mat-label>
+
+        <input
+          matInput
+          placeholder="Usuario o correo"
+          formControlName="motherSurname"
+        >
+
+        <mat-error>
+          <em class="mdi mdi-information"></em>
+          El apellido materno es requerido
+        </mat-error>
+      </mat-form-field>
+
+      <div class="row ps-2">
+        <div class="col-8 text-error">
+          <small *ngIf="error">
+            <em class="mdi mdi-information"></em>
+            {{ error }}
+          </small>
+        </div>
+
+        <div class="col-4 text-end">
+          <button
+            mat-stroked-button
+            color="primary"
+            [disabled]="load || form.pristine"
+          >
+            <em *ngIf="!load" class="mdi mdi-content-save mdi-18px"></em>
+            <em *ngIf="load" class="mdi mdi-loading mdi-spin mdi-18px"></em>
+            Guardar
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
