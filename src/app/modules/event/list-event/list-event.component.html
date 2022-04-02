@@ -1,5 +1,32 @@
-<div class="mt-4">
-  <h1>Eventos</h1>
+<div class="mt-4 row">
+  <div class="col-6">
+    <h1 class="title-margin">Eventos</h1>
+  </div>
+
+  <div class="col-6 text-end">
+    <mat-form-field appearance="outline">
+      <mat-label>Buscar un evento</mat-label>
+
+      <input
+        #searchInput
+        matInput
+        placeholder="🎉 super evento 🎊"
+        (keyup)="findOnEvents(searchInput)"
+      >
+
+      <mat-icon *ngIf="!search" matSuffix>search</mat-icon>
+
+      <button
+        *ngIf="search"
+        mat-icon-button
+        matSuffix
+        type="button"
+        (click)="restoreSearchFilter(searchInput)"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
 
   <hr>
 </div>

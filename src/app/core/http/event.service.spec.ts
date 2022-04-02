@@ -7,7 +7,6 @@ import { EventModel } from '../models/event.model';
 import { ServerErrorEnum } from '../enum/server-error.enum';
 
 describe('EventService', () => {
-
   let httpClientSpy: jasmine.SpyObj<HttpClient>;
   let eventService: EventService;
 
@@ -52,12 +51,10 @@ describe('EventService', () => {
 
     eventService.findAllEvents().subscribe(
       resp => {
-        expect(resp)
-          .withContext('expected EventModel')
-          .toEqual(events.data.map(data => new EventModel(data)));
+        expect(resp).toEqual(events.data.map(data => new EventModel(data)));
         done();
       },
-      error => {
+      _ => {
         done.fail;
       }
     );

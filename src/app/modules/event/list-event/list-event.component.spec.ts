@@ -25,23 +25,24 @@ describe('ListEventComponent', () => {
 
   it('should create', () => {
     httpClientSpy.get.and.returnValue(of({
-      "events": {
-        "data": [
-          {
-            "uuid": "d166408b-a9d6-465d-a1ee-cd9de4780500",
-            "name": "fake event",
-            "price": 150000.01,
-            "description": "test description",
-            "urlDataBase": "http://fake-link",
-            "endPointInvitation": "http://fake-end",
-            "primaryColor": "#F44336",
-            "accentColor": "#9C27B0",
-            "customTicket": false,
-            "endDate": "2022/03/23",
-            "createDate": "2022/03/23"
-          }
-        ]
-      }
+      "data": [
+        {
+          "uuid": "c61b2310-5ec8-4b27-865e-f69e56307e38",
+          "name": "Evento de prueba no 2",
+          "price": 2300.01,
+          "description": "fake text",
+          "urlDataBase": "http://end-point-invitation/fake",
+          "endPointInvitation": "http://end-point-invitation/fake",
+          "primaryColor": "#3F51B5",
+          "accentColor": "#E91E63",
+          "customTicket": false,
+          "remainingDay": "59",
+          "missingDay": "9",
+          "percentage": "67",
+          "endDate": "2022-05-30",
+          "createDate": "2022-03-23"
+        }
+      ]
     }));
 
     let fixture = TestBed.createComponent(ListEventComponent);
@@ -64,6 +65,157 @@ describe('ListEventComponent', () => {
     fixture.detectChanges();
 
     expect(component.error).toContain(ServerErrorEnum.message);
+  });
+
+  it('whe search events on the input', () => {
+    httpClientSpy.get.and.returnValue(of({
+      "data": [
+        {
+          "uuid": "c61b2310-5ec8-4b27-865e-f69e56307e38",
+          "name": "Evento de prueba no 2",
+          "price": 2300.01,
+          "description": "fake text",
+          "urlDataBase": "http://end-point-invitation/fake",
+          "endPointInvitation": "http://end-point-invitation/fake",
+          "primaryColor": "#3F51B5",
+          "accentColor": "#E91E63",
+          "customTicket": false,
+          "remainingDay": "59",
+          "missingDay": "9",
+          "percentage": "67",
+          "endDate": "2022-05-30",
+          "createDate": "2022-03-23"
+        },{
+          "uuid": "c61b2310-5ec8-4b27-865e-f69e56307e38",
+          "name": "Evento de prueba no 3",
+          "price": 2300.01,
+          "description": "fake text",
+          "urlDataBase": "http://end-point-invitation/fake",
+          "endPointInvitation": "http://end-point-invitation/fake",
+          "primaryColor": "#3F51B5",
+          "accentColor": "#E91E63",
+          "customTicket": false,
+          "remainingDay": "59",
+          "missingDay": "9",
+          "percentage": "67",
+          "endDate": "2022-05-30",
+          "createDate": "2022-03-23"
+        }
+      ]
+    }));
+
+    let fixture = TestBed.createComponent(ListEventComponent);
+    let component = fixture.componentInstance;
+    fixture.detectChanges();
+
+    const inputSearch = document.createElement('input');
+    inputSearch.value = 'no 2';
+    component.findOnEvents(inputSearch);
+    fixture.detectChanges();
+
+    expect(component.events[0].name).toBe('Evento de prueba no 2');
+    expect(component.search).toBeTruthy();
+  });
+
+  it('whe search and restore events', () => {
+    httpClientSpy.get.and.returnValue(of({
+      "data": [
+        {
+          "uuid": "c61b2310-5ec8-4b27-865e-f69e56307e38",
+          "name": "Evento de prueba no 2",
+          "price": 2300.01,
+          "description": "fake text",
+          "urlDataBase": "http://end-point-invitation/fake",
+          "endPointInvitation": "http://end-point-invitation/fake",
+          "primaryColor": "#3F51B5",
+          "accentColor": "#E91E63",
+          "customTicket": false,
+          "remainingDay": "59",
+          "missingDay": "9",
+          "percentage": "67",
+          "endDate": "2022-05-30",
+          "createDate": "2022-03-23"
+        },{
+          "uuid": "c61b2310-5ec8-4b27-865e-f69e56307e38",
+          "name": "Evento de prueba no 3",
+          "price": 2300.01,
+          "description": "fake text",
+          "urlDataBase": "http://end-point-invitation/fake",
+          "endPointInvitation": "http://end-point-invitation/fake",
+          "primaryColor": "#3F51B5",
+          "accentColor": "#E91E63",
+          "customTicket": false,
+          "remainingDay": "59",
+          "missingDay": "9",
+          "percentage": "67",
+          "endDate": "2022-05-30",
+          "createDate": "2022-03-23"
+        }
+      ]
+    }));
+
+    let fixture = TestBed.createComponent(ListEventComponent);
+    let component = fixture.componentInstance;
+    fixture.detectChanges();
+
+    const inputSearch = document.createElement('input');
+    inputSearch.value = '';
+    component.findOnEvents(inputSearch);
+    fixture.detectChanges();
+
+    expect(component.events.length).toBe(2);
+    expect(component.search).toBeFalsy();
+  });
+
+  it('whe search and external restore events', () => {
+    httpClientSpy.get.and.returnValue(of({
+      "data": [
+        {
+          "uuid": "c61b2310-5ec8-4b27-865e-f69e56307e38",
+          "name": "Evento de prueba no 2",
+          "price": 2300.01,
+          "description": "fake text",
+          "urlDataBase": "http://end-point-invitation/fake",
+          "endPointInvitation": "http://end-point-invitation/fake",
+          "primaryColor": "#3F51B5",
+          "accentColor": "#E91E63",
+          "customTicket": false,
+          "remainingDay": "59",
+          "missingDay": "9",
+          "percentage": "67",
+          "endDate": "2022-05-30",
+          "createDate": "2022-03-23"
+        },{
+          "uuid": "c61b2310-5ec8-4b27-865e-f69e56307e38",
+          "name": "Evento de prueba no 3",
+          "price": 2300.01,
+          "description": "fake text",
+          "urlDataBase": "http://end-point-invitation/fake",
+          "endPointInvitation": "http://end-point-invitation/fake",
+          "primaryColor": "#3F51B5",
+          "accentColor": "#E91E63",
+          "customTicket": false,
+          "remainingDay": "59",
+          "missingDay": "9",
+          "percentage": "67",
+          "endDate": "2022-05-30",
+          "createDate": "2022-03-23"
+        }
+      ]
+    }));
+
+    let fixture = TestBed.createComponent(ListEventComponent);
+    let component = fixture.componentInstance;
+    fixture.detectChanges();
+
+    const inputSearch = document.createElement('input');
+    inputSearch.value = 'No 2';
+    component.restoreSearchFilter(inputSearch);
+    fixture.detectChanges();
+
+    expect(inputSearch.value).toBe('');
+    expect(component.events.length).toBe(2);
+    expect(component.search).toBeFalsy();
   });
 
 });

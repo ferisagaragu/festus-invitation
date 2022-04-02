@@ -9,6 +9,9 @@ export class EventModel {
   primaryColor: string;
   accentColor: string;
   customTicket: boolean;
+  remainingDay: number;
+  missingDay: number;
+  percentage: number;
   endDate: Date;
   createDate: Date;
 

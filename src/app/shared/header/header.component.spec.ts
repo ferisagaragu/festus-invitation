@@ -7,6 +7,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { of } from 'rxjs';
 import { SessionService } from 'ng-urxnium';
 import { HeaderComponent } from './header.component';
+import { MatDialog } from '@angular/material/dialog';
 
 class SessionServiceMock {
   onSignIn = of(true)
@@ -31,11 +32,14 @@ class SessionServiceMock {
 }
 
 describe('HeaderComponent', () => {
+  let matDialog: jasmine.SpyObj<MatDialog>;
   let router = {
     navigate: jasmine.createSpy('navigate')
   };
 
   beforeEach(async () => {
+    matDialog = jasmine.createSpyObj('MatDialog', ['open']);
+
     await TestBed.configureTestingModule({
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
       declarations: [ HeaderComponent ],
@@ -51,6 +55,9 @@ describe('HeaderComponent', () => {
         },{
           provide: Router,
           useValue: router
+        },{
+          provide: MatDialog,
+          useValue: matDialog
         }
       ]
     }).compileComponents();
@@ -80,6 +87,14 @@ describe('HeaderComponent', () => {
     const nativeComponent = fixture.nativeElement.getElementsByClassName('mat-progress-bar-buffer')[0];
 
     expect(nativeComponent.classList[0]).toEqual('mat-progress-bar-buffer');
+  });
+
+  it('when call dialog to config user', () => {
+    const fixture = TestBed.createComponent(HeaderComponent);
+    const component = fixture.componentInstance;
+    matDialog.open.and.returnValue(MatDialog['opened'])
+    component.openConfigUser();
+    expect(matDialog.open.calls.count()).toBe(1);
   });
 
 });

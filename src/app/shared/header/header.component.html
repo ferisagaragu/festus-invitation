@@ -3,17 +3,23 @@
   color="accent"
 >
   <div *ngIf="!loadApp" class="row w-100">
-    <div class="col-md-6">
+    <div class="col-md-4">
       <img
-        class="user-icon"
+        class="user-icon pointer"
         alt="user photo"
         matTooltipPosition="right"
         [matTooltip]="user.name + ' ' + user.surname + ' ' + user.motherSurname"
         [src]="user.photo"
+        (click)="openConfigUser()"
       >
     </div>
 
-    <div class="col-md-6 text-end">
+    <div class="col-md-4 text-center app-title">
+      <img class="small-icon" alt="festus-icon" src="assets/img/festus-icon.jpg">
+      Festus Invitaciones
+    </div>
+
+    <div class="col-md-4 text-end">
       <em
         class="mdi mdi-logout mdi-24px sign-out-icon"
         matTooltip="Cerrar sesión"

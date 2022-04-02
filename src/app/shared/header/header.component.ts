@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 import { SessionService } from 'ng-urxnium';
 import { UserModel } from '../../core/models/user.model';
+import { FormConfigUserComponent } from '../form-config-user/form-config-user.component';
 
 @Component({
   selector: 'app-header',
@@ -16,11 +18,23 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private sessionService: SessionService,
+    private dialog: MatDialog,
     private route: Router
   ) { }
 
   ngOnInit(): void {
     this.validateSession();
+  }
+
+  openConfigUser(): void {
+    this.dialog.open(
+      FormConfigUserComponent,
+      {
+        width: '500px',
+        height: '550px',
+        backdropClass: 'scroll'
+      }
+    );
   }
 
   signOut(): void {

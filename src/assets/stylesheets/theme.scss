@@ -35,6 +35,10 @@ body {
   background: rgba(213, 181, 156, 0.11);
 }
 
+h3 {
+  font-weight: 100;
+}
+
 .material-icons {
   font-family: 'Material Icons', Helvetica, Arial, Verdana, Tahoma, sans-serif !important;
 }
@@ -47,4 +51,9 @@ body {
 
 .text-error {
   color: #F44336 !important;
+}
+
+.user-icon {
+  border-radius: 10px;
+  width: 50px;
 }

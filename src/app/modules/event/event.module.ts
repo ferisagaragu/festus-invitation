@@ -9,6 +9,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { EventRoutingModule } from './event-routing.module';
 import { ListEventComponent } from './list-event/list-event.component';
 import { ItemEventComponent } from './item-event/item-event.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { ItemEventComponent } from './item-event/item-event.component';
     MatCardModule,
     MatChipsModule,
     MatProgressBarModule,
-    MatIconModule
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatTooltipModule
   ]
 })
 export class EventModule { }

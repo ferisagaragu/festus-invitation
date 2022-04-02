@@ -58,6 +58,9 @@ registerLocaleData(localeEsMx);
     },{
       provide: MAT_DATE_FORMATS,
       useValue: 'dd - mmm - yyyy'
+    },{
+      provide: 'location',
+      useValue: location
     }
   ],
   bootstrap: [AppComponent]
