@@ -36,8 +36,12 @@
   [event]="event"
 ></app-item-event>
 
-<div *ngIf="events?.length === 0" class="text-center w-100">
+<div *ngIf="events?.length === 0 && !search" class="text-center w-100">
   Parece que no tienes eventos registrados
+</div>
+
+<div *ngIf="events?.length === 0 && search" class="text-center w-100">
+  No hay eventos que coincidan con la búsqueda 😕
 </div>
 
 <div *ngIf="!error && load" class="row justify-content-center">

@@ -7,7 +7,7 @@ import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { registerLocaleData } from '@angular/common';
 import localeEsMx from '@angular/common/locales/es-MX';
 
-import { UrxGridModule, UrxSessionModule } from 'ng-urxnium';
+import { BASE_URL, REFRESH_TOKEN_URL, VALIDATE_TOKEN_URL, UrxGridModule, UrxSessionModule } from 'ng-urxnium';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -37,7 +37,7 @@ registerLocaleData(localeEsMx);
       provide: DEFAULT_CURRENCY_CODE,
       useValue: 'MXN'
     },{
-      provide: 'baseUrl',
+      provide: BASE_URL,
       useValue: environment.baseUrl
     },{
       provide: 'authRoute',
@@ -46,10 +46,10 @@ registerLocaleData(localeEsMx);
         unauthorized: 'event'
       }
     },{
-      provide: 'validateTokenUrl',
+      provide: VALIDATE_TOKEN_URL,
       useValue: environment.validateTokenUrl
     },{
-      provide: 'refreshTokenUrl',
+      provide: REFRESH_TOKEN_URL,
       useValue: environment.refreshTokenUrl
     },{
       provide: DateAdapter,
