@@ -19,8 +19,8 @@ export class InputUserIconComponent implements ControlValueAccessor {
   @Input() photo: string;
 
   isDisabled: boolean;
-  onChange = (_:any) => { }
-  onTouch = () => { }
+  onChange = (_: any) => { /*This is intentional*/ }
+  onTouch = () => { /*This is intentional*/ }
 
   userIcon: string;
   loadIcon: boolean;
