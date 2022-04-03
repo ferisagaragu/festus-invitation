@@ -39,6 +39,8 @@ export class HeaderComponent implements OnInit {
 
   signOut(): void {
     this.sessionService.signOut();
+    this.showToolbar = false;
+    this.loadApp = false;
     this.route.navigate(['/']);
   }
 
@@ -47,7 +49,11 @@ export class HeaderComponent implements OnInit {
       this.showToolbar = resp;
       this.user = this.sessionService.getUser();
     });
-    this.sessionService.onValidateTokenLoad.subscribe(resp => this.loadApp = resp);
+
+    this.sessionService.onValidateTokenLoad.subscribe(
+      resp => this.loadApp = resp,
+      _ =>  this.signOut()
+    );
   }
 
 }
