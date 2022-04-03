@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { getHeaders } from './headers.http';
-import { ServerErrorEnum } from '../enum/server-error.enum';
 import { UserModel } from '../models/user.model';
 import { environment } from '../../../environments/environment';
+import { validateServerErrorFunction } from '../functions/validate-server-error.function';
 
 @Injectable({
   providedIn: 'root'
@@ -20,10 +20,7 @@ export class UserService {
       { headers: getHeaders() }
     ).pipe(
       map((resp: any) => resp.data),
-      catchError(err => err.statusText !== ServerErrorEnum.unknownError ?
-        throwError(err.error.message) :
-        throwError(ServerErrorEnum.message)
-      )
+      catchError(err => validateServerErrorFunction(err))
     );
   }
 
@@ -32,12 +29,7 @@ export class UserService {
       `${environment.baseUrl}/users`,
       { ...user },
       { headers: getHeaders() }
-    ).pipe(
-      catchError(err => err.statusText !== ServerErrorEnum.unknownError ?
-        throwError(err.error.message) :
-        throwError(ServerErrorEnum.message)
-      )
-    );
+    ).pipe(catchError(err => validateServerErrorFunction(err)));
   }
 
 }
