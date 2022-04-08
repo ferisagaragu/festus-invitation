@@ -4,10 +4,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { of } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { of, throwError } from 'rxjs';
 import { SessionService } from 'ng-urxnium';
 import { HeaderComponent } from './header.component';
-import { MatDialog } from '@angular/material/dialog';
 
 class SessionServiceMock {
   onSignIn = of(true)
@@ -15,16 +15,16 @@ class SessionServiceMock {
 
   getUser() {
     return {
-      "uuid":"2f965d78-dc13-4b66-97b0-2bcd9c13b79d",
-      "name":"Fernando Isaías",
-      "surname":"García",
-      "motherSurname":"Aguirre",
-      "photo":"https://fake",
-      "accountType":"DEFAULT",
-      "userName":"fernnypay95",
-      "email":"ferisagaragu@gmail.com",
-      "createDate":"2022-03-22T21:43:44.580+00:00",
-      "team":null
+      uuid: '2f965d78-dc13-4b66-97b0-2bcd9c13b79d',
+      name: 'Fernando Isaías',
+      surname: 'García',
+      motherSurname: 'Aguirre',
+      photo: 'https://fake',
+      accountType: 'DEFAULT',
+      userName: 'fernnypay95',
+      email: 'ferisagaragu@gmail.com',
+      createDate: '2022-03-22T21:43:44.580+00:00',
+      team: null
     }
   }
 
@@ -33,6 +33,7 @@ class SessionServiceMock {
 
 describe('HeaderComponent', () => {
   let matDialog: jasmine.SpyObj<MatDialog>;
+  let sessionServiceMock = new SessionServiceMock();
   let router = {
     navigate: jasmine.createSpy('navigate')
   };
@@ -51,7 +52,7 @@ describe('HeaderComponent', () => {
       providers: [
         {
           provide: SessionService,
-          useValue: new SessionServiceMock()
+          useValue: sessionServiceMock
         },{
           provide: Router,
           useValue: router
@@ -63,14 +64,14 @@ describe('HeaderComponent', () => {
     }).compileComponents();
   });
 
-  it('should create', () => {
+  it(`should create`, () => {
     const fixture = TestBed.createComponent(HeaderComponent);
     const component = fixture.componentInstance;
     fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 
-  it('singOut application function', () => {
+  it(`singOut application function`, () => {
     const fixture = TestBed.createComponent(HeaderComponent);
     const component = fixture.componentInstance;
     fixture.detectChanges();
@@ -78,7 +79,7 @@ describe('HeaderComponent', () => {
     expect(router.navigate).toHaveBeenCalledWith(['/'] );
   });
 
-  it('header is load', () => {
+  it(`header is load`, () => {
     const fixture = TestBed.createComponent(HeaderComponent);
     const component = fixture.componentInstance;
     component.loadApp = true;
@@ -89,12 +90,22 @@ describe('HeaderComponent', () => {
     expect(nativeComponent.classList[0]).toEqual('mat-progress-bar-buffer');
   });
 
-  it('when call dialog to config user', () => {
+  it(`when call dialog to config user`, () => {
     const fixture = TestBed.createComponent(HeaderComponent);
     const component = fixture.componentInstance;
     matDialog.open.and.returnValue(MatDialog['opened'])
     component.openConfigUser();
     expect(matDialog.open.calls.count()).toBe(1);
+  });
+
+  it(`when the token authentication isn't valid`, () => {
+    const fixture = TestBed.createComponent(HeaderComponent);
+    const component = fixture.componentInstance;
+    sessionServiceMock.onValidateTokenLoad = throwError(new Error('invalid'));
+    fixture.detectChanges();
+
+    expect(component.showToolbar).toBeFalsy();
+    sessionServiceMock.onValidateTokenLoad = of(true);
   });
 
 });

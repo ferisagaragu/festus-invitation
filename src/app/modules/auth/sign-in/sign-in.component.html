@@ -87,7 +87,8 @@
     </form>
 
     <div class="ps-4 pe-4 text-error">
-      <small>
+      <small *ngIf="error">
+        <em class="mdi mdi-information"></em>
         {{ error }}
       </small>
     </div>

@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClient } from '@angular/common/http';
-import { InputUserIconComponent } from './input-user-icon.component';
 import { of } from 'rxjs';
+import { InputUserIconComponent } from './input-user-icon.component';
 
 describe('InputUserIconComponent', () => {
   let httpClientSpy: jasmine.SpyObj<HttpClient>;
@@ -17,18 +17,17 @@ describe('InputUserIconComponent', () => {
           useValue: httpClientSpy
         }
       ]
-    })
-    .compileComponents();
+    }).compileComponents();
   });
 
-  it('should create', () => {
+  it(`should create`, () => {
     const fixture = TestBed.createComponent(InputUserIconComponent);
     const component = fixture.componentInstance;
     fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 
-  it('call setDisabledState function', () => {
+  it(`call setDisabledState function`, () => {
     const fixture = TestBed.createComponent(InputUserIconComponent);
     const component = fixture.componentInstance;
     expect(component.isDisabled).toBeFalsy();
@@ -37,12 +36,10 @@ describe('InputUserIconComponent', () => {
     expect(component.isDisabled).toBeTruthy();
   });
 
-  it('call refreshUserIcon function', () => {
+  it(`call refreshUserIcon function`, () => {
     const fixture = TestBed.createComponent(InputUserIconComponent);
     const component = fixture.componentInstance;
-    const dataSorce = {
-      data: 'http://fake-image-link'
-    }
+    const dataSorce = { data: 'http://fake-image-link' };
 
     expect(component.loadIcon).toBeFalsy();
 

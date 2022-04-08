@@ -4,6 +4,12 @@
   </div>
 
   <div class="col-6 text-end">
+    <mat-checkbox class="me-4" [checked]="showDone" (change)="showDone = !showDone">
+      Ver eventos terminados
+      <em *ngIf="showDone" class="mdi mdi-eye ms-2"></em>
+      <em *ngIf="!showDone" class="mdi mdi-eye-off ms-2"></em>
+    </mat-checkbox>
+
     <mat-form-field appearance="outline">
       <mat-label>Buscar un evento</mat-label>
 
@@ -34,6 +40,7 @@
 <app-item-event
   *ngFor="let event of events"
   [event]="event"
+  [showDone]="showDone"
 ></app-item-event>
 
 <div *ngIf="events?.length === 0 && !search" class="text-center w-100">
@@ -42,6 +49,12 @@
 
 <div *ngIf="events?.length === 0 && search" class="text-center w-100">
   No hay eventos que coincidan con la búsqueda 😕
+</div>
+
+<div *ngIf="events?.length > 0 && search && !showDone" class="text-center w-100">
+  Hay eventos que coinciden, para verlos activa la opción
+  <code class="pointer" (click)="showDone = !showDone">Ver eventos terminados</code>
+  🙀
 </div>
 
 <div *ngIf="!error && load" class="row justify-content-center">
@@ -54,7 +67,14 @@
   {{ error }}
 </mat-card>
 
-<button mat-fab class="button-position" color="primary">
+<div class="end-space"></div>
+
+<button
+  mat-fab
+  class="button-position"
+  color="primary"
+  [routerLink]="['create']"
+>
   <mat-icon>
     add
   </mat-icon>

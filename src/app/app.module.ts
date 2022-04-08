@@ -13,6 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { environment } from '../environments/environment';
+import { dateFormat } from './core/formats/date.format';
 
 registerLocaleData(localeEsMx);
 
@@ -57,7 +58,7 @@ registerLocaleData(localeEsMx);
       deps: [MAT_DATE_LOCALE]
     },{
       provide: MAT_DATE_FORMATS,
-      useValue: 'dd - mmm - yyyy'
+      useValue: dateFormat
     },{
       provide: 'location',
       useValue: location

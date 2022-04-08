@@ -1,12 +1,9 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { SonarQualityComponent } from './sonar-quality.component';
+import { TestBed } from '@angular/core/testing';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SonarQualityComponent } from './sonar-quality.component';
 
 describe('SonarQualityComponent', () => {
-  let component: SonarQualityComponent;
-  let fixture: ComponentFixture<SonarQualityComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -19,13 +16,10 @@ describe('SonarQualityComponent', () => {
     .compileComponents();
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(SonarQualityComponent);
-    component = fixture.componentInstance;
+  it(`should create`, () => {
+    let fixture = TestBed.createComponent(SonarQualityComponent);
+    let component = fixture.componentInstance;
     fixture.detectChanges();
-  });
-
-  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

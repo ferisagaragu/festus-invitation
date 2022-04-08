@@ -1,0 +1,301 @@
+<div class="mt-4 row">
+  <div class="col-12">
+    <h1 class="title-margin">
+      <em
+        class="mdi mdi-arrow-left mdi-24px return-arrow-space pointer"
+        [routerLink]="['/']"
+      >
+      </em>
+
+      <span class="me-5">
+        {{ this.uuid ? 'Actualiza tu evento' : 'Crea un evento' }}
+      </span>
+    </h1>
+  </div>
+
+  <hr>
+</div>
+
+<div *ngIf="loadUpdate" class="row justify-content-center">
+  <div class="col-4">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
+</div>
+
+<mat-card *ngIf="!loadUpdate" class="mt-4 p-5">
+  <form class="row" [formGroup]="form" (ngSubmit)="save()">
+    <div class="col-md-12 mb-3">
+      <h3>Información básica</h3>
+      <hr>
+    </div>
+
+    <div class="col-md-6">
+      <mat-form-field
+        class="w-100"
+        appearance="outline"
+        color="accent"
+      >
+        <mat-label>Nombre del novi@</mat-label>
+
+        <input
+          matInput
+          required
+          placeholder="Nombre del novi@ 👰‍♂️"
+          formControlName="firstCoupleName"
+        >
+
+        <mat-error>
+          <em class="mdi mdi-information"></em>
+          El nombre del novi@ es requerido
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-6">
+      <mat-form-field
+        class="w-100"
+        appearance="outline"
+        color="accent"
+      >
+        <mat-label>Nombre del novi@</mat-label>
+
+        <input
+          matInput
+          required
+          placeholder="Nombre del novi@ 🤵"
+          formControlName="secondCoupleName"
+        >
+
+        <mat-error>
+          <em class="mdi mdi-information"></em>
+          El nombre del novi@ es requerido
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-6">
+      <mat-form-field
+        class="w-100"
+        appearance="outline"
+        color="accent"
+      >
+        <mat-label>Color primario</mat-label>
+
+        <input
+          matInput
+          required
+          formControlName="primaryColor"
+          type="color"
+        >
+
+        <mat-error>
+          <em class="mdi mdi-information"></em>
+          El color primario es requerido
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-6">
+      <mat-form-field
+        class="w-100"
+        appearance="outline"
+        color="accent"
+      >
+        <mat-label>Color secundario</mat-label>
+
+        <input
+          matInput
+          required
+          formControlName="secondaryColor"
+          type="color"
+        >
+
+        <mat-error>
+          <em class="mdi mdi-information"></em>
+          El color secundario es requerido
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-6">
+      <mat-form-field
+        class="w-100"
+        appearance="outline"
+        color="accent"
+      >
+        <mat-label>Fecha de entrega</mat-label>
+
+        <input
+          matInput
+          required
+          formControlName="endDate"
+          [matDatepicker]="pickerEndDate"
+          [min]="todayDateBlock"
+        >
+
+        <mat-datepicker-toggle matSuffix [for]="pickerEndDate"></mat-datepicker-toggle>
+        <mat-datepicker #pickerEndDate></mat-datepicker>
+
+        <mat-error>
+          <em class="mdi mdi-information"></em>
+          La fecha de entrega es requerida
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-6">
+      <mat-form-field
+        class="w-100"
+        appearance="outline"
+        color="accent"
+      >
+        <mat-label>Fecha del evento</mat-label>
+
+        <input
+          matInput
+          required
+          formControlName="eventDate"
+          [matDatepicker]="pickerEventDate"
+          [min]="form.get('endDate').value ? form.get('endDate').value : todayDateBlock"
+        >
+
+        <mat-datepicker-toggle matSuffix [for]="pickerEventDate"></mat-datepicker-toggle>
+        <mat-datepicker #pickerEventDate></mat-datepicker>
+
+        <mat-error>
+          <em class="mdi mdi-information"></em>
+          La fecha del evento es requerida
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-6">
+      <mat-form-field
+        class="w-100"
+        appearance="outline"
+        color="accent"
+        floatLabel="always"
+      >
+        <mat-label>Precio</mat-label>
+
+        <input
+          matInput
+          inputMask
+          required
+          formControlName="price"
+          [mask]="pesosMask"
+        >
+
+        <mat-error>
+          <em class="mdi mdi-information"></em>
+          El precio es requerido
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-6 pt-3">
+      <mat-checkbox formControlName="customTicket">
+        Boletos personalizados
+      </mat-checkbox>
+    </div>
+
+    <div class="col-md-12">
+      <mat-form-field
+        class="w-100"
+        appearance="outline"
+        color="accent"
+      >
+        <mat-label>Descripción</mat-label>
+
+        <textarea
+          matInput
+          required
+          placeholder="He esperado tanto tiempo este momento 🍷"
+          formControlName="description"
+        >
+        </textarea>
+
+        <mat-error>
+          <em class="mdi mdi-information"></em>
+          El nombre del novi@ es requerido
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-12 mt-4 mb-3">
+      <h3>Información técnica</h3>
+      <hr>
+    </div>
+
+    <div class="col-md-6">
+      <mat-form-field
+        class="w-100"
+        appearance="outline"
+        color="accent"
+      >
+        <mat-label>Link del proveedor</mat-label>
+
+        <input
+          matInput
+          placeholder="http://your-database-link 🖇️"
+          formControlName="providerUrl"
+        >
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-6">
+      <mat-form-field
+        class="w-100"
+        appearance="outline"
+        color="accent"
+      >
+        <mat-label>Tipo de proveedor</mat-label>
+
+        <mat-select formControlName="providerType">
+          <mat-option value="firebase">
+            Firebase
+          </mat-option>
+
+          <mat-option value="rest">
+            REST Service
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-12">
+      <mat-form-field
+        class="w-100"
+        appearance="outline"
+        color="accent"
+      >
+        <mat-label>Link de la invitación</mat-label>
+
+        <input
+          matInput
+          placeholder="http://your-database-link 🎉🥳"
+          formControlName="endPointInvitation"
+        >
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-9 text-error">
+      <small *ngIf="error">
+        <em class="mdi mdi-information"></em>
+        {{ error }}
+      </small>
+    </div>
+
+    <div class="col-md-3 text-end">
+      <button mat-stroked-button color="primary" [disabled]="form.pristine || load">
+        <em *ngIf="!load" class="mdi mdi-content-save mdi-18px"></em>
+        <em *ngIf="load" class="mdi mdi-loading mdi-spin mdi-18px"></em>
+        <span>
+          {{ uuid ? 'Actualizar' : 'Guardar' }}
+        </span>
+      </button>
+    </div>
+  </form>
+</mat-card>
+
+<div class="end-space"></div>

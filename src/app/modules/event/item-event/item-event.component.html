@@ -1,11 +1,13 @@
 <mat-card
+  *ngIf="showDone || event.percentage <= 100"
   class="row mt-4 card-background"
-  [style.color]="event?.accentColor ? event.accentColor : '#fff'"
+  [style.color]="event?.secondaryColor ? event.secondaryColor : '#fff'"
 >
   <div class="col-12 row">
     <div class="col-6">
       <div class="icon" [style.background]="event?.primaryColor ? event.primaryColor : '#fff'">
-        <em class="mdi mdi-calendar mdi-36px event-icon"></em>
+        <em *ngIf="event.percentage <= 100" class="mdi mdi-calendar mdi-36px event-icon"></em>
+        <em *ngIf="event.percentage >= 100" class="mdi mdi-calendar-check mdi-36px event-icon"></em>
       </div>
 
       <span class="title">
@@ -22,9 +24,8 @@
     </div>
 
     <div class="col-6 text-end">
-      <button mat-stroked-button>
-        <em class="mdi mdi-eye"></em>
-        Ver el evento
+      <button mat-stroked-button [matMenuTriggerFor]="menu">
+        <em class="mdi mdi-cog mdi-18px"></em>
       </button>
     </div>
 
@@ -39,14 +40,15 @@
     <div class="col-3">
       <mat-chip-list>
         <mat-chip color="primary" selected>
-          {{ event?.price | currency }}
+          {{ event?.unformatPrice | currency }} MNX
         </mat-chip>
       </mat-chip-list>
     </div>
 
     <div class="col-5">
       <small *ngIf="event.missingDay > 0">Faltan {{ event.missingDay }} dias</small>
-      <small *ngIf="event.missingDay < 0">El periodo a terminado</small>
+      <small *ngIf="event.missingDay <= 0">El periodo a terminado</small>
+
       <mat-progress-bar
         color="primary"
         [value]="event.percentage"
@@ -58,4 +60,21 @@
       {{ event?.endDate | date: 'EEEE dd \'de\' MMMM \'del\' yyyy' }}
     </div>
   </div>
+
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <em class="mdi mdi-eye me-2"></em>
+      Ver el evento
+    </button>
+
+    <button mat-menu-item [routerLink]="['update', event.uuid]">
+      <em class="mdi mdi-pencil me-2"></em>
+      Editar el evento
+    </button>
+
+    <button mat-menu-item [routerLink]="['delete', event.uuid]">
+      <em class="mdi mdi-trash-can me-2"></em>
+      Eliminar el evento
+    </button>
+  </mat-menu>
 </mat-card>
