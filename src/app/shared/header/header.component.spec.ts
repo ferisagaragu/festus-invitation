@@ -64,14 +64,14 @@ describe('HeaderComponent', () => {
     }).compileComponents();
   });
 
-  it('should create', () => {
+  it(`should create`, () => {
     const fixture = TestBed.createComponent(HeaderComponent);
     const component = fixture.componentInstance;
     fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 
-  it('singOut application function', () => {
+  it(`singOut application function`, () => {
     const fixture = TestBed.createComponent(HeaderComponent);
     const component = fixture.componentInstance;
     fixture.detectChanges();
@@ -79,7 +79,7 @@ describe('HeaderComponent', () => {
     expect(router.navigate).toHaveBeenCalledWith(['/'] );
   });
 
-  it('header is load', () => {
+  it(`header is load`, () => {
     const fixture = TestBed.createComponent(HeaderComponent);
     const component = fixture.componentInstance;
     component.loadApp = true;
@@ -90,7 +90,7 @@ describe('HeaderComponent', () => {
     expect(nativeComponent.classList[0]).toEqual('mat-progress-bar-buffer');
   });
 
-  it('when call dialog to config user', () => {
+  it(`when call dialog to config user`, () => {
     const fixture = TestBed.createComponent(HeaderComponent);
     const component = fixture.componentInstance;
     matDialog.open.and.returnValue(MatDialog['opened'])
@@ -98,7 +98,7 @@ describe('HeaderComponent', () => {
     expect(matDialog.open.calls.count()).toBe(1);
   });
 
-  it('when the token authentication isn\'t valid', () => {
+  it(`when the token authentication isn't valid`, () => {
     const fixture = TestBed.createComponent(HeaderComponent);
     const component = fixture.componentInstance;
     sessionServiceMock.onValidateTokenLoad = throwError(new Error('invalid'));
