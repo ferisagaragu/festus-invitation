@@ -2,9 +2,25 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { of, throwError } from 'rxjs';
-import { ServerErrorEnum } from '../enum/server-error.enum';
+import { ServerErrorConst } from '../const/server-error.const';
 import { UserModel } from '../models/user.model';
 import { UserService } from './user.service';
+
+const unauthorizedError = new HttpErrorResponse({
+  error: {
+    message: 'No esta autorizado para realizar esta acción'
+  },
+  status: 401,
+  statusText: 'Unauthorized',
+  url: 'http://fake.com'
+});
+
+const unknownError = new HttpErrorResponse({
+  error: '',
+  status: 0,
+  statusText: ServerErrorConst.unknownError,
+  url: 'http://fake.com'
+});
 
 describe('UserService', () => {
   let httpClientSpy: jasmine.SpyObj<HttpClient>;
@@ -18,21 +34,22 @@ describe('UserService', () => {
         HttpClientTestingModule
       ],
       providers: [
-        { provide: HttpClient, useValue: httpClientSpy }
+        {
+          provide: HttpClient,
+          useValue: httpClientSpy
+        }
       ]
     });
 
     userService = TestBed.inject(UserService);
   });
 
-  it('should be created', () => {
+  it(`should be created`, () => {
     expect(userService).toBeTruthy();
   });
 
-  it('refreshUserImage success call', (done: DoneFn) => {
-    const respData = {
-      data: 'http://fake-image'
-    }
+  it(`refreshUserImage success call`, (done: DoneFn) => {
+    const respData = { data: 'http://fake-image' };
     httpClientSpy.get.and.returnValue(of(respData));
 
     userService.refreshUserImage().subscribe(
@@ -48,21 +65,13 @@ describe('UserService', () => {
     expect(httpClientSpy.get.calls.count()).toBe(1);
   });
 
-  it('refreshUserImage bad call', (done: DoneFn) => {
-    const error = new HttpErrorResponse({
-      error: {
-        message: 'No esta autorizado para realizar esta acción'
-      },
-      status: 401,
-      statusText: 'Unauthorized',
-      url: 'http://fake.com'
-    });
-    httpClientSpy.get.and.returnValue(throwError(error));
+  it(`refreshUserImage unauthenticated call`, (done: DoneFn) => {
+    httpClientSpy.get.and.returnValue(throwError(unauthorizedError));
 
     userService.refreshUserImage().subscribe(
       _ => done.fail,
       error => {
-        expect(error).toContain('No esta autorizado para realizar esta acción');
+        expect(error).toContain(unauthorizedError.error.message);
         done();
       }
     );
@@ -70,19 +79,13 @@ describe('UserService', () => {
     expect(httpClientSpy.get.calls.count()).toBe(1);
   });
 
-  it('refreshUserImage unauthenticated call', (done: DoneFn) => {
-    const error = new HttpErrorResponse({
-      error: '',
-      status: 0,
-      statusText: ServerErrorEnum.unknownError,
-      url: 'http://fake.com'
-    });
-    httpClientSpy.get.and.returnValue(throwError(error));
+  it(`refreshUserImage unknown error call`, (done: DoneFn) => {
+    httpClientSpy.get.and.returnValue(throwError(unknownError));
 
     userService.refreshUserImage().subscribe(
       _ => done.fail,
       error => {
-        expect(error).toContain(ServerErrorEnum.message);
+        expect(error).toContain(ServerErrorConst.message);
         done();
       }
     );
@@ -90,7 +93,7 @@ describe('UserService', () => {
     expect(httpClientSpy.get.calls.count()).toBe(1);
   });
 
-  it('updateUser success call', (done: DoneFn) => {
+  it(`updateUser success call`, (done: DoneFn) => {
     const respData = { status: 200 };
     httpClientSpy.put.and.returnValue(of(respData));
 
@@ -105,21 +108,13 @@ describe('UserService', () => {
     expect(httpClientSpy.put.calls.count()).toBe(1);
   });
 
-  it('updateUser bad call', (done: DoneFn) => {
-    const error = new HttpErrorResponse({
-      error: {
-        message: 'No esta autorizado para realizar esta acción'
-      },
-      status: 401,
-      statusText: 'Unauthorized',
-      url: 'http://fake.com'
-    });
-    httpClientSpy.put.and.returnValue(throwError(error));
+  it(`updateUser bad call`, (done: DoneFn) => {
+    httpClientSpy.put.and.returnValue(throwError(unauthorizedError));
 
     userService.updateUser(new UserModel({})).subscribe(
       _ => done.fail,
       error => {
-        expect(error.status).toEqual(error.status);
+        expect(error).toEqual(unauthorizedError.error.message);
         done();
       }
     );
@@ -127,19 +122,13 @@ describe('UserService', () => {
     expect(httpClientSpy.put.calls.count()).toBe(1);
   });
 
-  it('updateUser bad call sever not response', (done: DoneFn) => {
-    const error = new HttpErrorResponse({
-      error: null,
-      status: 0,
-      statusText: ServerErrorEnum.unknownError,
-      url: 'http://fake.com'
-    });
-    httpClientSpy.put.and.returnValue(throwError(error));
+  it(`updateUser bad call sever not response`, (done: DoneFn) => {
+    httpClientSpy.put.and.returnValue(throwError(unknownError));
 
     userService.updateUser(new UserModel({})).subscribe(
       _ => done.fail,
       error => {
-        expect(error).toEqual(ServerErrorEnum.message);
+        expect(error).toEqual(ServerErrorConst.message);
         done();
       }
     );

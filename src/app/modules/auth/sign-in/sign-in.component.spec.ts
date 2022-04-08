@@ -15,18 +15,51 @@ import { of, throwError } from 'rxjs';
 import { SessionService, UrxSessionModule } from 'ng-urxnium';
 import { SignInComponent } from './sign-in.component';
 import { AuthRoutingModule } from '../auth-routing.module';
-import { ServerErrorEnum } from '../../../core/enum/server-error.enum';
+import { ServerErrorConst } from '../../../core/const/server-error.const';
+import { AuthService } from '../../../core/http/auth.service';
+import { UserModel } from '../../../core/models/user.model';
+
+const unauthorizedErrorUser = {
+  fieldNameError: 'userName',
+  message: 'El usuario no existe'
+};
+
+const unauthorizedErrorPassword = {
+  fieldNameError: 'password',
+  message: 'El password es incorrecto'
+};
+
+const unauthorizedErrorUnknown = new HttpErrorResponse({
+  error: {
+    fieldNameError: 'userName22',
+    message: 'El usuario no existe'
+  },
+  status: 401,
+  statusText: 'Unauthorized',
+  url: 'http://fake.com'
+});
+
+const unknownError = new HttpErrorResponse({
+  status: 0,
+  statusText: ServerErrorConst.unknownError,
+  url: 'http://fake.com'
+});
+
+const setFormData = (form) => {
+  form.get('userName').setValue('fakeUser');
+  form.get('password').setValue('password');
+}
 
 describe('SignInComponent', () => {
-  let httpClientSpy: jasmine.SpyObj<HttpClient>;
+  let authServiceSpy: jasmine.SpyObj<AuthService>;
   let sessionService: jasmine.SpyObj<SessionService>;
   let router = {
     navigate: jasmine.createSpy('navigate')
   };
 
   beforeEach(async () => {
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['post']);
     sessionService = jasmine.createSpyObj('SessionService', ['signIn']);
+    authServiceSpy = jasmine.createSpyObj('AuthService', ['signIn']);
 
     await TestBed.configureTestingModule({
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
@@ -46,11 +79,11 @@ describe('SignInComponent', () => {
       ],
       providers: [
         {
-          provide: HttpClient,
-          useValue: httpClientSpy
-        },{
           provide: SessionService,
           useValue: sessionService
+        },{
+          provide: AuthService,
+          useValue: authServiceSpy
         },{
           provide: Router,
           useValue: router
@@ -59,49 +92,45 @@ describe('SignInComponent', () => {
     }).compileComponents();
   });
 
-  it('should create', () => {
+  it(`should create`, () => {
     const fixture = TestBed.createComponent(SignInComponent);
     const component = fixture.componentInstance;
     fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 
-  it('submit data to sign in', () => {
+  it(`submit data to sign in`, () => {
+    authServiceSpy.signIn.and.returnValue(of(new UserModel({ })));
+    sessionService.signIn.and.returnValue(null);
     const fixture = TestBed.createComponent(SignInComponent);
     const app = fixture.componentInstance;
     fixture.detectChanges();
-    app.ngOnInit();
 
-    app.form.get('userName').setValue('fakeUser');
-    app.form.get('password').setValue('password');
-    httpClientSpy.post.and.returnValue(of({ }));
-    sessionService.signIn.and.returnValue(null);
+    setFormData(app.form);
     app.signIn();
 
     expect(router.navigate).toHaveBeenCalledWith(['/event']);
     expect(app.form.value).toEqual({ userName: 'fakeUser', password: 'password' });
-    expect(httpClientSpy.post.calls.count()).toBe(1);
+    expect(authServiceSpy.signIn.calls.count()).toBe(1);
     expect(sessionService.signIn.calls.count()).toBe(1);
   });
 
-  it('submit data to sign in with bat information', () => {
+  it(`submit data to sign in with bat information`, () => {
     const fixture = TestBed.createComponent(SignInComponent);
     const app = fixture.componentInstance;
     fixture.detectChanges();
-    app.ngOnInit();
 
     app.form.get('userName').setValue('fakeUser');
     app.form.get('password').setValue('');
     app.signIn();
 
-    expect(app.form.value).toEqual({ userName: 'fakeUser', password: '' });
+    expect(app.form.invalid).toBeTruthy();
   });
 
-  it('validate required fields', () => {
+  it(`validate required fields`, () => {
     const fixture = TestBed.createComponent(SignInComponent);
     const app = fixture.componentInstance;
     fixture.detectChanges();
-    app.ngOnInit();
 
     app.form.markAllAsTouched();
     fixture.detectChanges();
@@ -112,69 +141,44 @@ describe('SignInComponent', () => {
   });
 
   it(`submit data to sign in but when user name doesn't exist`, () => {
+    authServiceSpy.signIn.and.returnValue(throwError(unauthorizedErrorUser))
     const fixture = TestBed.createComponent(SignInComponent);
     const app = fixture.componentInstance;
-    app.ngOnInit();
-
-    app.form.get('userName').setValue('fakeUser');
-    app.form.get('password').setValue('password');
-    const error = new HttpErrorResponse({
-      error: {
-        fieldNameError: 'userName',
-        message: 'El usuario no existe'
-      },
-      status: 401,
-      statusText: 'Unauthorized',
-      url: 'http://fake.com'
-    });
-    httpClientSpy.post.and.returnValue(throwError(error));
-    app.signIn();
-
-    expect(app.form.value).toEqual({ userName: 'fakeUser', password: 'password' });
-    expect(httpClientSpy.post.calls.count()).toBe(1);
-  });
-
-  it(`submit data to sign in but when user name doesn't exist`, () => {
-    const fixture = TestBed.createComponent(SignInComponent);
-    const app = fixture.componentInstance;
-    app.ngOnInit();
-
-    app.form.get('userName').setValue('fakeUser');
-    app.form.get('password').setValue('password');
-    const error = new HttpErrorResponse({
-      error: {
-        fieldNameError: 'password',
-        message: 'El password es incorrecto'
-      },
-      status: 401,
-      statusText: 'Unauthorized',
-      url: 'http://fake.com'
-    });
-    httpClientSpy.post.and.returnValue(throwError(error));
-    app.signIn();
-
-    expect(app.form.value).toEqual({ userName: 'fakeUser', password: 'password' });
-    expect(httpClientSpy.post.calls.count()).toBe(1);
-  });
-
-  it(`submit data to sign in but when user name doesn't exist`, () => {
-    const fixture = TestBed.createComponent(SignInComponent);
-    const app = fixture.componentInstance;
-    app.ngOnInit();
-
-    app.form.get('userName').setValue('fakeUser');
-    app.form.get('password').setValue('password');
-    const error = new HttpErrorResponse({
-      status: 0,
-      statusText: ServerErrorEnum.unknownError,
-      url: 'http://fake.com'
-    });
-    httpClientSpy.post.and.returnValue(throwError(error));
-    app.signIn();
     fixture.detectChanges();
 
-    expect(app.error).toEqual(ServerErrorEnum.message);
-    expect(httpClientSpy.post.calls.count()).toBe(1);
+    setFormData(app.form);
+    app.signIn();
+
+    expect(app.form.value).toEqual({ userName: 'fakeUser', password: 'password' });
+    expect(authServiceSpy.signIn.calls.count()).toBe(1);
+    expect(app.form.get('userName').getError('server')).toEqual(unauthorizedErrorUser.message);
+  });
+
+  it(`submit data to sign in but when password is bad`, () => {
+    authServiceSpy.signIn.and.returnValue(throwError(unauthorizedErrorPassword));
+    const fixture = TestBed.createComponent(SignInComponent);
+    const app = fixture.componentInstance;
+    fixture.detectChanges();
+
+    setFormData(app.form);
+    app.signIn();
+
+    expect(app.form.value).toEqual({ userName: 'fakeUser', password: 'password' });
+    expect(authServiceSpy.signIn.calls.count()).toBe(1);
+    expect(app.form.get('password').getError('server')).toEqual(unauthorizedErrorPassword.message);
+  });
+
+  it(`submit data to sign in but the server doesn't response`, () => {
+    authServiceSpy.signIn.and.returnValue(throwError(unknownError));
+    const fixture = TestBed.createComponent(SignInComponent);
+    const app = fixture.componentInstance;
+    fixture.detectChanges();
+
+    setFormData(app.form);
+    app.signIn();
+
+    expect(app.error['status']).toEqual(unknownError.status);
+    expect(authServiceSpy.signIn.calls.count()).toBe(1);
   });
 
 });

@@ -57,7 +57,6 @@ export class SignInComponent implements OnInit {
 
       if (!error.fieldNameError) this.error = error;
     });
-
   }
 
   private createForm(): void {

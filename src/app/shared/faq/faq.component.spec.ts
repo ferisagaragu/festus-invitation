@@ -22,14 +22,14 @@ describe('FaqComponent', () => {
     }).compileComponents();
   });
 
-  it('should create', () => {
+  it(`should create`, () => {
     const fixture = TestBed.createComponent(FaqComponent);
     const component = fixture.componentInstance;
     fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 
-  it('open dialog whit openSonarQualityDialog function', () => {
+  it(`open dialog whit openSonarQualityDialog function`, () => {
     const fixture = TestBed.createComponent(FaqComponent);
     const component = fixture.componentInstance;
     matDialog.open.and.returnValue(MatDialog['opened'])

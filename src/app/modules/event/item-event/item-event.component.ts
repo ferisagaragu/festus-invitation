@@ -9,5 +9,6 @@ import { EventModel } from '../../../core/models/event.model';
 export class ItemEventComponent {
 
   @Input() event: EventModel;
+  @Input() showDone: boolean;
 
 }

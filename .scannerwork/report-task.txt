@@ -2,5 +2,5 @@ projectKey=festus-invitation
 serverUrl=http://localhost:9000
 serverVersion=9.3.0.51899
 dashboardUrl=http://localhost:9000/dashboard?id=festus-invitation
-ceTaskId=AX_sJSgiU6Xw0UIe1Y2v
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AX_sJSgiU6Xw0UIe1Y2v
+ceTaskId=AYAFqd3i3AE51Quwzqz5
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYAFqd3i3AE51Quwzqz5

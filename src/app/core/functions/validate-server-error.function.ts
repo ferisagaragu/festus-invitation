@@ -1,10 +1,10 @@
 import { throwError } from 'rxjs';
-import { ServerErrorEnum } from '../enum/server-error.enum';
+import { ServerErrorConst } from '../const/server-error.const';
 
 export const validateServerErrorFunction = (err: any, completeTrace?: boolean) => {
-  return err.statusText !== ServerErrorEnum.unknownError ?
+  return err.statusText !== ServerErrorConst.unknownError ?
     throwError(validateCompleteTrace(err, completeTrace)) :
-    throwError(ServerErrorEnum.message)
+    throwError(ServerErrorConst.message)
 }
 
 const validateCompleteTrace = (err: any, completeTrace?: boolean): any => {
