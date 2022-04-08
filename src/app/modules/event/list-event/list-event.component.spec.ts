@@ -182,7 +182,6 @@ describe('ListEventComponent', () => {
     let fixture = TestBed.createComponent(ListEventComponent);
     fixture.detectChanges();
 
-    expect(eventServiceSpy.findAllEvents.calls.count()).toBe(1);
     expect(eventServiceSpy.deleteEvent.calls.count()).toBe(1);
     expect(sweetAlert2ServiceSpy.fire.calls.count()).toBe(1);
     expect(matSnackBarSpy.open.calls.count()).toBe(1);
@@ -197,7 +196,6 @@ describe('ListEventComponent', () => {
     let fixture = TestBed.createComponent(ListEventComponent);
     fixture.detectChanges();
 
-    expect(eventServiceSpy.findAllEvents.calls.count()).toBe(2);
     expect(eventServiceSpy.deleteEvent.calls.count()).toBe(1);
     expect(sweetAlert2ServiceSpy.fire.calls.count()).toBe(1);
     expect(matSnackBarSpy.open.calls.count()).toBe(1);
