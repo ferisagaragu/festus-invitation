@@ -43,6 +43,10 @@ h3 {
   font-family: 'Material Icons', Helvetica, Arial, Verdana, Tahoma, sans-serif !important;
 }
 
+.mat-tab-body-content {
+  overflow: hidden !important;
+}
+
 .card-error {
   background: #F44336;
   color: white;

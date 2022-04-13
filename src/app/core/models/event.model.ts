@@ -11,11 +11,13 @@ export class EventModel {
   primaryColor: string;
   secondaryColor: string;
   customTicket: boolean;
-  price: string;
+  price: number;
+  type: Array<string>;
+  advance: string;
+  remaining: string;
   endDate: Date;
   eventDate: Date;
   createDate: Date;
-  unformatPrice: number;
   remainingDay: number;
   percentage: number;
   missingDay: number;

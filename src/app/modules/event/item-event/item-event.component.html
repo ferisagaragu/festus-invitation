@@ -40,7 +40,7 @@
     <div class="col-3">
       <mat-chip-list>
         <mat-chip color="primary" selected>
-          {{ event?.unformatPrice | currency }} MNX
+          {{ event?.price | currency }} MNX
         </mat-chip>
       </mat-chip-list>
     </div>
@@ -62,7 +62,7 @@
   </div>
 
   <mat-menu #menu="matMenu">
-    <button mat-menu-item>
+    <button *ngIf="event.type.includes('webPage')" mat-menu-item>
       <em class="mdi mdi-eye me-2"></em>
       Ver el evento
     </button>

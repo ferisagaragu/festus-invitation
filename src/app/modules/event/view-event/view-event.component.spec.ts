@@ -1,16 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatTabsModule } from '@angular/material/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TabInvitationDetailComponent } from './tab-invitation-detail.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { ViewEventComponent } from './view-event.component';
 
-describe('TabInvitationDetailComponent', () => {
-  let component: TabInvitationDetailComponent;
-  let fixture: ComponentFixture<TabInvitationDetailComponent>;
+describe('ViewEventComponent', () => {
+  let component: ViewEventComponent;
+  let fixture: ComponentFixture<ViewEventComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
       declarations: [
-        TabInvitationDetailComponent
+        ViewEventComponent
       ],
       imports: [
         MatTabsModule,
@@ -21,7 +23,7 @@ describe('TabInvitationDetailComponent', () => {
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TabInvitationDetailComponent);
+    fixture = TestBed.createComponent(ViewEventComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

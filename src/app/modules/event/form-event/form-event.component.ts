@@ -40,7 +40,10 @@ export class FormEventComponent implements OnInit {
     this.form.disable();
 
     if (!this.uuid) {
-      this.eventServer.createEvent(this.form.value).subscribe(_ => {
+      this.eventServer.createEvent({
+        ...this.form.value,
+        price: this.calculatePrice()
+      }).subscribe(_ => {
         this.router.navigate(['/']);
       }, error => {
         this.form.enable();
@@ -48,9 +51,13 @@ export class FormEventComponent implements OnInit {
         this.error = error;
       });
     } else {
-      this.eventServer.updateEvent(this.uuid, {
-        ...this.form.value
-      }).subscribe(_ => {
+      this.eventServer.updateEvent(
+        this.uuid,
+        {
+          ...this.form.value,
+          price: this.calculatePrice()
+        }
+      ).subscribe(_ => {
         this.router.navigate(['/']);
       }, error => {
         this.form.enable();
@@ -60,15 +67,32 @@ export class FormEventComponent implements OnInit {
     }
   }
 
+  calculatePrice(): number {
+    let advance = this.form.get('advance').value ?
+      this.form.get('advance').value
+        .replace('$', '')
+        .replace(',', '')
+        .replace(' MNX', '') : 0;
+    let remaining = this.form.get('remaining').value ?
+      this.form.get('remaining').value
+        .replace('$', '')
+        .replace(',', '')
+        .replace(' MNX', '') : 0;
+
+    return parseFloat(advance) + parseFloat(remaining);
+  }
+
   private createForm(): void {
     this.form = this.formBuilder.group({
+      type: [[], Validators.required],
       firstCoupleName: ['', Validators.required],
       secondCoupleName: ['', Validators.required],
       primaryColor: ['#EABE3F'],
       secondaryColor: ['#5e2129'],
       endDate: [null, Validators.required],
       eventDate: [null, Validators.required],
-      price: ['', Validators.required],
+      advance: ['', Validators.required],
+      remaining: [''],
       customTicket: [false],
       description: [''],
       providerUrl: [''],
