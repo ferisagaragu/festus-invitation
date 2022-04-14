@@ -32,6 +32,30 @@ const eventResp = {
   name: 'Fernando & Alejandra'
 }
 
+const chartResp = {
+  "timestamp": "04-13-2022  11:35:42 a. m.",
+  "status": 200,
+  "data": [
+    {
+      "label": 2022,
+      "data": [
+        0,
+        0,
+        0,
+        5000,
+        0,
+        200,
+        0,
+        1000,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ]
+}
+
 const successResp = {
   status: 200
 };
@@ -166,6 +190,66 @@ describe('EventService', () => {
       },
       _ => {
         done.fail;
+      }
+    );
+
+    expect(httpClientSpy.get.calls.count()).toBe(1);
+  });
+
+  it(`generateChartEvent success call`, (done: DoneFn) => {
+    httpClientSpy.get.and.returnValue(of(chartResp))
+
+    eventService.generateChartEvent().subscribe(
+      resp => {
+        expect(resp).toEqual(chartResp.data);
+        done();
+      },
+      _ => {
+        done.fail;
+      }
+    );
+
+    expect(httpClientSpy.get.calls.count()).toBe(1);
+  });
+
+  it(`generateChartEvent success call and response with null resp`, (done: DoneFn) => {
+    httpClientSpy.get.and.returnValue(of(null))
+
+    eventService.generateChartEvent().subscribe(
+      resp => {
+        expect(resp).toEqual(undefined);
+        done();
+      },
+      _ => {
+        done.fail;
+      }
+    );
+
+    expect(httpClientSpy.get.calls.count()).toBe(1);
+  });
+
+  it(`generateChartEvent unauthorized call`, (done: DoneFn) => {
+    httpClientSpy.get.and.returnValue(throwError(unauthorizedError))
+
+    eventService.generateChartEvent().subscribe(
+      _ => done.fail,
+      error => {
+        expect(error).toContain(unauthorizedError.error.message);
+        done();
+      }
+    );
+
+    expect(httpClientSpy.get.calls.count()).toBe(1);
+  });
+
+  it(`generateChartEvent call but server not response`, (done: DoneFn) => {
+    httpClientSpy.get.and.returnValue(throwError(unknownError))
+
+    eventService.generateChartEvent().subscribe(
+      _ => done.fail,
+      error => {
+        expect(error).toContain(ServerErrorConst.message);
+        done();
       }
     );
 

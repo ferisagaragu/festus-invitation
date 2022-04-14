@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:3000',
-  validateTokenUrl: `http://localhost:5000/rest/auth/validate-token`,
-  refreshTokenUrl: `http://localhost:5000/rest/auth/refresh-token`
+  baseUrl: 'http://localhost:5000/rest',
+  validateTokenUrl: 'http://localhost:5000/rest/auth/validate-token',
+  refreshTokenUrl: 'http://localhost:5000/rest/auth/refresh-token'
 };
 
 /*

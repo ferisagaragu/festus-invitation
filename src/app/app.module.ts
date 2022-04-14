@@ -7,13 +7,14 @@ import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { registerLocaleData } from '@angular/common';
 import localeEsMx from '@angular/common/locales/es-MX';
 
-import { BASE_URL, REFRESH_TOKEN_URL, VALIDATE_TOKEN_URL, UrxGridModule, UrxSessionModule } from 'ng-urxnium';
+import { BASE_URL, REFRESH_TOKEN_URL, VALIDATE_TOKEN_URL, AUTH_ROUTE, UrxGridModule, UrxSessionModule } from 'ng-urxnium';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { environment } from '../environments/environment';
 import { dateFormat } from './core/formats/date.format';
+import { LOCATION } from './core/provider/identifier.provider';
 
 registerLocaleData(localeEsMx);
 
@@ -41,7 +42,7 @@ registerLocaleData(localeEsMx);
       provide: BASE_URL,
       useValue: environment.baseUrl
     },{
-      provide: 'authRoute',
+      provide: AUTH_ROUTE,
       useValue: {
         authorized: 'auth',
         unauthorized: 'event'
@@ -60,7 +61,7 @@ registerLocaleData(localeEsMx);
       provide: MAT_DATE_FORMATS,
       useValue: dateFormat
     },{
-      provide: 'location',
+      provide: LOCATION,
       useValue: location
     }
   ],

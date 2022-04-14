@@ -29,7 +29,7 @@
     "chart.js": "^3.7.1",
     "concurrently": "^7.0.0",
     "moment": "^2.29.1",
-    "ng-urxnium": "^2.5.9",
+    "ng-urxnium": "^2.6.10",
     "ng2-charts": "^3.0.8",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
