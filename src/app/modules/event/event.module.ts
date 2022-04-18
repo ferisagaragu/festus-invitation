@@ -27,6 +27,7 @@ import { ItemEventComponent } from './item-event/item-event.component';
 import { FormEventComponent } from './form-event/form-event.component';
 import { ViewEventComponent } from './view-event/view-event.component';
 import { ChartSaleEventComponent } from './chart-sale-event/chart-sale-event.component';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 @NgModule({
   declarations: [
@@ -36,28 +37,29 @@ import { ChartSaleEventComponent } from './chart-sale-event/chart-sale-event.com
     ViewEventComponent,
     ChartSaleEventComponent
   ],
-  imports: [
-    CommonModule,
-    EventRoutingModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatCardModule,
-    MatChipsModule,
-    MatProgressBarModule,
-    MatIconModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatTooltipModule,
-    MatSelectModule,
-    MatOptionModule,
-    MatDatepickerModule,
-    MatCheckboxModule,
-    MatMenuModule,
-    MatSnackBarModule,
-    MatTabsModule,
-    UrxFormatModule,
-    UrxAlertModule,
-    NgChartsModule
-  ]
+	imports: [
+		CommonModule,
+		EventRoutingModule,
+		ReactiveFormsModule,
+		MatButtonModule,
+		MatCardModule,
+		MatChipsModule,
+		MatProgressBarModule,
+		MatIconModule,
+		MatFormFieldModule,
+		MatInputModule,
+		MatTooltipModule,
+		MatSelectModule,
+		MatOptionModule,
+		MatDatepickerModule,
+		MatCheckboxModule,
+		MatMenuModule,
+		MatSnackBarModule,
+		MatTabsModule,
+		UrxFormatModule,
+		UrxAlertModule,
+		NgChartsModule,
+		AngularEditorModule
+	]
 })
 export class EventModule { }

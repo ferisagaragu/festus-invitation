@@ -14,6 +14,7 @@ import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { MatCardModule } from '@angular/material/card';
 import { UrxFormatModule } from 'ng-urxnium';
 import { of, throwError } from 'rxjs';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 import { EventService } from '../../../core/http/event.service';
 import { FormEventComponent } from './form-event.component';
 import { EventModel } from '../../../core/models/event.model';
@@ -92,6 +93,7 @@ describe('FormEventComponent', () => {
         MatDatepickerModule,
         MatCardModule,
         UrxFormatModule,
+        AngularEditorModule,
         BrowserAnimationsModule
       ],
       providers: [

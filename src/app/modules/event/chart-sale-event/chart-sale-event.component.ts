@@ -13,6 +13,7 @@ export class ChartSaleEventComponent implements OnInit {
 
   chartData: ChartConfiguration['data'];
   optionFormat: ChartConfiguration['options'];
+  showNotChart: boolean;
 
   constructor(private eventService: EventService) {
     this.chartData = chartConfigurationFormat;
@@ -22,6 +23,7 @@ export class ChartSaleEventComponent implements OnInit {
   ngOnInit(): void {
     this.eventService.generateChartEvent().subscribe(resp => {
       this.chartData = chartConfigurationFormat.datasets = resp;
+      this.showNotChart = resp.length === 0;
     });
   }
 

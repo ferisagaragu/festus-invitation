@@ -43,7 +43,7 @@ export class ListEventComponent implements OnInit {
       this.originalEvents = resp;
       this.events = resp;
       this.load = false;
-    }, error => this.error = error );
+    }, error => this.error = error);
   }
 
   findOnEvents(searchInput: HTMLInputElement): void {

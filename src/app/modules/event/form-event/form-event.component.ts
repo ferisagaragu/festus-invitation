@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { pesosFormat } from '../../../core/formats/pesos.format';
 import { EventService } from '../../../core/http/event.service';
 
@@ -18,6 +19,39 @@ export class FormEventComponent implements OnInit {
   loadUpdate: boolean;
   uuid: string;
   error: string;
+
+  editorConfig: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: 'auto',
+    minHeight: '250px',
+    maxHeight: 'auto',
+    width: 'auto',
+    minWidth: '0',
+    translate: 'yes',
+    enableToolbar: true,
+    showToolbar: true,
+    placeholder: 'He esperado tanto tiempo este momento 🍷',
+    toolbarPosition: 'top',
+    toolbarHiddenButtons: [
+      [
+        'fontName'
+      ],
+      [
+        'fontSize',
+        'textColor',
+        'backgroundColor',
+        'customClasses',
+        'link',
+        'unlink',
+        'insertImage',
+        'insertVideo',
+        'insertHorizontalRule',
+        'toggleEditorMode',
+        'removeFormat'
+      ]
+    ]
+  };
 
   constructor(
     private formBuilder: FormBuilder,
@@ -105,6 +139,8 @@ export class FormEventComponent implements OnInit {
 
       this.eventServer.findAllEvents(this.uuid).subscribe(resp => {
         this.form.reset(resp);
+        this.form.get('endDate').disable();
+        this.form.get('eventDate').disable();
         this.loadUpdate = false;
       }, error => {
         this.error = error;

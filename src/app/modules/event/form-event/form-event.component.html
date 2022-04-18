@@ -268,27 +268,12 @@
         </mat-checkbox>
       </div>
 
-      <div class="col-md-12">
-        <mat-form-field
-          class="w-100"
-          appearance="outline"
-          color="accent"
+      <div class="col-md-12 mb-4">
+        <angular-editor
+          formControlName="description"
+          [config]="editorConfig"
         >
-          <mat-label>Descripción</mat-label>
-
-          <textarea
-            matInput
-            required
-            placeholder="He esperado tanto tiempo este momento 🍷"
-            formControlName="description"
-          >
-          </textarea>
-
-          <mat-error>
-            <em class="mdi mdi-information"></em>
-            El nombre del novi@ es requerido
-          </mat-error>
-        </mat-form-field>
+        </angular-editor>
       </div>
     </div>
 

@@ -6,7 +6,7 @@
   <hr>
 </div>
 
-<div style="display: block; overflow: hidden">
+<div  class="chart-container">
   <canvas
     baseChart
     [data]="chartData"
@@ -14,6 +14,10 @@
     type="line"
   >
   </canvas>
+</div>
+
+<div *ngIf="showNotChart" class="text-center">
+  Parece que aún no tienes eventos que gráficar
 </div>
 
 <div class="end-space"></div>
