@@ -25,10 +25,20 @@ export class EventService {
     );
   }
 
+  generateChartEvent(): Observable<any> {
+    return this.http.get(
+      `${environment.baseUrl}/events/generate-chart-sale`,
+      { headers: getHeaders() }
+    ).pipe(
+      map((resp: any) => resp?.data),
+      catchError(err => validateServerErrorFunction(err))
+    );
+  }
+
   createEvent(event: EventModel): Observable<any> {
     return this.http.post(
       `${environment.baseUrl}/events`,
-      { ...event },
+      { ...event, type: event.type.join(',') },
       { headers: getHeaders() }
     ).pipe(
       catchError(err => validateServerErrorFunction(err))
@@ -38,7 +48,7 @@ export class EventService {
   updateEvent(uuid: string, event: EventModel): Observable<any> {
     return this.http.put(
       `${environment.baseUrl}/events/${uuid}`,
-      { ...event },
+      { ...event, type: event.type.join(',') },
       { headers: getHeaders() }
     ).pipe(
       catchError(err => validateServerErrorFunction(err))

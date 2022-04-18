@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { pesosFormat } from '../../../core/formats/pesos.format';
 import { EventService } from '../../../core/http/event.service';
 
@@ -18,6 +19,39 @@ export class FormEventComponent implements OnInit {
   loadUpdate: boolean;
   uuid: string;
   error: string;
+
+  editorConfig: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: 'auto',
+    minHeight: '250px',
+    maxHeight: 'auto',
+    width: 'auto',
+    minWidth: '0',
+    translate: 'yes',
+    enableToolbar: true,
+    showToolbar: true,
+    placeholder: 'He esperado tanto tiempo este momento 🍷',
+    toolbarPosition: 'top',
+    toolbarHiddenButtons: [
+      [
+        'fontName'
+      ],
+      [
+        'fontSize',
+        'textColor',
+        'backgroundColor',
+        'customClasses',
+        'link',
+        'unlink',
+        'insertImage',
+        'insertVideo',
+        'insertHorizontalRule',
+        'toggleEditorMode',
+        'removeFormat'
+      ]
+    ]
+  };
 
   constructor(
     private formBuilder: FormBuilder,
@@ -40,7 +74,10 @@ export class FormEventComponent implements OnInit {
     this.form.disable();
 
     if (!this.uuid) {
-      this.eventServer.createEvent(this.form.value).subscribe(_ => {
+      this.eventServer.createEvent({
+        ...this.form.value,
+        price: this.calculatePrice()
+      }).subscribe(_ => {
         this.router.navigate(['/']);
       }, error => {
         this.form.enable();
@@ -48,9 +85,13 @@ export class FormEventComponent implements OnInit {
         this.error = error;
       });
     } else {
-      this.eventServer.updateEvent(this.uuid, {
-        ...this.form.value
-      }).subscribe(_ => {
+      this.eventServer.updateEvent(
+        this.uuid,
+        {
+          ...this.form.value,
+          price: this.calculatePrice()
+        }
+      ).subscribe(_ => {
         this.router.navigate(['/']);
       }, error => {
         this.form.enable();
@@ -60,15 +101,32 @@ export class FormEventComponent implements OnInit {
     }
   }
 
+  calculatePrice(): number {
+    let advance = this.form.get('advance').value ?
+      this.form.get('advance').value
+        .replace('$', '')
+        .replace(',', '')
+        .replace(' MNX', '') : 0;
+    let remaining = this.form.get('remaining').value ?
+      this.form.get('remaining').value
+        .replace('$', '')
+        .replace(',', '')
+        .replace(' MNX', '') : 0;
+
+    return parseFloat(advance) + parseFloat(remaining);
+  }
+
   private createForm(): void {
     this.form = this.formBuilder.group({
+      type: [[], Validators.required],
       firstCoupleName: ['', Validators.required],
       secondCoupleName: ['', Validators.required],
       primaryColor: ['#EABE3F'],
       secondaryColor: ['#5e2129'],
       endDate: [null, Validators.required],
       eventDate: [null, Validators.required],
-      price: ['', Validators.required],
+      advance: ['', Validators.required],
+      remaining: [''],
       customTicket: [false],
       description: [''],
       providerUrl: [''],
@@ -81,6 +139,8 @@ export class FormEventComponent implements OnInit {
 
       this.eventServer.findAllEvents(this.uuid).subscribe(resp => {
         this.form.reset(resp);
+        this.form.get('endDate').disable();
+        this.form.get('eventDate').disable();
         this.loadUpdate = false;
       }, error => {
         this.error = error;

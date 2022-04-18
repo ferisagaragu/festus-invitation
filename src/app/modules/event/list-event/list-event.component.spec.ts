@@ -1,11 +1,15 @@
 import { TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpErrorResponse } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { of, throwError } from 'rxjs';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
 import { SweetAlert2Service } from 'ng-urxnium';
+import { of, throwError } from 'rxjs';
 import { ListEventComponent } from './list-event.component';
 import { EventService } from '../../../core/http/event.service';
 import { EventModel } from '../../../core/models/event.model';
@@ -77,8 +81,15 @@ describe('ListEventComponent', () => {
 
     await TestBed.configureTestingModule({
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-      declarations: [ ListEventComponent ],
+      declarations: [
+        ListEventComponent
+      ],
       imports: [
+        RouterModule,
+        MatCheckboxModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatIconModule,
         BrowserAnimationsModule
       ],
       providers: [

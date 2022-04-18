@@ -1,6 +1,5 @@
 import { TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -9,13 +8,21 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
+import { MatCardModule } from '@angular/material/card';
+import { UrxFormatModule } from 'ng-urxnium';
 import { of, throwError } from 'rxjs';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 import { EventService } from '../../../core/http/event.service';
 import { FormEventComponent } from './form-event.component';
 import { EventModel } from '../../../core/models/event.model';
+import { dateFormat } from '../../../core/formats/date.format';
 
 const eventResp = {
   uuid: "e7aabf2d-721b-45a4-ac9b-cc50cf20af19",
+  type: ['pdf'],
   firstCoupleName: 'Fernando',
   secondCoupleName: 'Alejandra',
   description: 'description',
@@ -25,7 +32,9 @@ const eventResp = {
   primaryColor: '#EABE3F',
   secondaryColor: '#5e2129',
   customTicket: true,
-  price: '$1,000.00 MNX',
+  price: 1000,
+  advance: '$500.00 MNX',
+  remaining: '$500.00 MNX',
   endDate: '2022-06-01T05:00:00.000+00:00',
   eventDate: '2022-08-01T05:00:00.000+00:00',
   createDate: '2022-04-06T04:22:59.432+00:00',
@@ -38,13 +47,15 @@ const eventResp = {
 }
 
 const setEventData = (form) => {
+  form.get('type').setValue(['pdf']);
   form.get('firstCoupleName').setValue('first');
   form.get('secondCoupleName').setValue('second');
   form.get('primaryColor').setValue('#fff');
   form.get('secondaryColor').setValue('#000');
   form.get('endDate').setValue(new Date());
   form.get('eventDate').setValue(new Date());
-  form.get('price').setValue('$1,000.00 MNX');
+  form.get('advance').setValue('$1,000.00 MNX');
+  form.get('remaining').setValue('$1,000.00 MNX');
   form.get('customTicket').setValue(false);
   form.get('description').setValue('description');
   form.get('providerUrl').setValue('https://fake-link');
@@ -70,7 +81,6 @@ describe('FormEventComponent', () => {
     eventServiceSpy = jasmine.createSpyObj('EventService', ['findAllEvents', 'createEvent', 'updateEvent']);
 
     await TestBed.configureTestingModule({
-      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
       declarations: [ FormEventComponent ],
       imports: [
         ReactiveFormsModule,
@@ -80,6 +90,10 @@ describe('FormEventComponent', () => {
         MatSelectModule,
         MatFormFieldModule,
         MatInputModule,
+        MatDatepickerModule,
+        MatCardModule,
+        UrxFormatModule,
+        AngularEditorModule,
         BrowserAnimationsModule
       ],
       providers: [
@@ -92,6 +106,13 @@ describe('FormEventComponent', () => {
         },{
           provide: ActivatedRoute,
           useValue: mockActivatedRoute
+        },{
+          provide: DateAdapter,
+          useClass: MomentDateAdapter,
+          deps: [MAT_DATE_LOCALE]
+        },{
+          provide: MAT_DATE_FORMATS,
+          useValue: dateFormat
         }
       ]
     }).compileComponents();
@@ -106,7 +127,7 @@ describe('FormEventComponent', () => {
 
   it(`when the component should create with uuid`, () => {
     TestBed.overrideProvider(ActivatedRoute, { useValue: { snapshot: { params: { uuid: 'uuid' } } }});
-    eventServiceSpy.findAllEvents.and.returnValue(of(new EventModel({ })));
+    eventServiceSpy.findAllEvents.and.returnValue(of(new EventModel({ type: ['pdf'] })));
     let fixture = TestBed.createComponent(FormEventComponent);
     let component = fixture.componentInstance;
     fixture.detectChanges();

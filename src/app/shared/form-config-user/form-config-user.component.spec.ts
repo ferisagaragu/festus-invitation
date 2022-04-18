@@ -2,10 +2,13 @@ import { TestBed } from '@angular/core/testing';
 import { FormConfigUserComponent } from './form-config-user.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
-import { SessionService } from 'ng-urxnium';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { HttpErrorResponse } from '@angular/common/http';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { of, throwError } from 'rxjs';
+import { SessionService } from 'ng-urxnium';
 import { InputUserIconComponent } from '../input-user-icon/input-user-icon.component';
 import { UserService } from '../../core/http/user.service';
 
@@ -59,7 +62,10 @@ describe('FormConfigUserComponent', () => {
       imports: [
         ReactiveFormsModule,
         MatDialogModule,
-        HttpClientTestingModule
+        MatFormFieldModule,
+        MatInputModule,
+        HttpClientTestingModule,
+        BrowserAnimationsModule
       ],
       providers: [
         {

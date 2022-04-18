@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { MatTabsModule } from '@angular/material/tabs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TabInvitationDetailComponent } from './tab-invitation-detail.component';
 
 describe('TabInvitationDetailComponent', () => {
@@ -8,7 +9,13 @@ describe('TabInvitationDetailComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TabInvitationDetailComponent ]
+      declarations: [
+        TabInvitationDetailComponent
+      ],
+      imports: [
+        MatTabsModule,
+        BrowserAnimationsModule
+      ]
     })
     .compileComponents();
   });

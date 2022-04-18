@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -8,11 +8,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Router } from '@angular/router';
-import { of, throwError } from 'rxjs';
 import { SessionService, UrxSessionModule } from 'ng-urxnium';
+import { of, throwError } from 'rxjs';
 import { SignInComponent } from './sign-in.component';
 import { AuthRoutingModule } from '../auth-routing.module';
 import { ServerErrorConst } from '../../../core/const/server-error.const';
@@ -28,16 +27,6 @@ const unauthorizedErrorPassword = {
   fieldNameError: 'password',
   message: 'El password es incorrecto'
 };
-
-const unauthorizedErrorUnknown = new HttpErrorResponse({
-  error: {
-    fieldNameError: 'userName22',
-    message: 'El usuario no existe'
-  },
-  status: 401,
-  statusText: 'Unauthorized',
-  url: 'http://fake.com'
-});
 
 const unknownError = new HttpErrorResponse({
   status: 0,
@@ -62,7 +51,6 @@ describe('SignInComponent', () => {
     authServiceSpy = jasmine.createSpyObj('AuthService', ['signIn']);
 
     await TestBed.configureTestingModule({
-      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
       declarations: [ SignInComponent ],
       imports: [
         AuthRoutingModule,
