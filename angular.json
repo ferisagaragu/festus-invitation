@@ -110,5 +110,6 @@
       }
     }
   },
-  "defaultProject": "festus-invitation"
+  "defaultProject": "festus-invitation",
+  "new": "data"
 }
