@@ -1,0 +1,19 @@
+.row {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.row-timer {
+  width: 60%;
+  position: relative;
+  transform: translateY(130px);
+  color: white;
+  font-size: 18px;
+  text-shadow: #000000 1px 0 10px;
+}
+
+.background-white {
+  background-image: url(~src/assets/img/timer.png);
+  background-size: cover;
+  height: 250px;
+}

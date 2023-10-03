@@ -1,0 +1,42 @@
+<div class="faq-container mt-5 pt-4">
+  <div *ngIf="lang != 'en'" class="title-cursive">
+    {{ type === 'wedding' ? '¡Gracias por ser parte de nuestra historia!' : '¡Gracias por ser parte de mi historia!' }}
+  </div>
+
+  <div *ngIf="lang == 'en'" class="title-cursive">
+    Thank you for being a part of our story!
+  </div>
+
+  <div *ngIf="type === 'wedding'" class="rings"></div>
+  <div *ngIf="type === 'XV'" class="xv"></div>
+  <div *ngIf="type === 'XVIII'" class="xviii"></div>
+  <div *ngIf="type === 'christening'" class="christening"></div>
+
+  <div class="faq-section">
+    <div class="text-center mb-3">
+      <img src="../../../../assets/img/festus-logo.png">
+    </div>
+
+    <div class="text-center">
+      <strong>Desarrollado por:</strong> Festus Invitaciones Digitales
+    </div>
+
+    <div class="text-center pt-5 pb-3">
+      <a href="https://wa.me/message/5E7GFTJL4OQXI1" target="_blank">
+        <em class="mdi mdi-whatsapp mdi-48px"></em>
+      </a>&ngsp;&ngsp;&ngsp;&ngsp;&ngsp;&ngsp;&ngsp;&ngsp;&ngsp;&ngsp;&ngsp;&ngsp;
+
+      <a href="https://www.instagram.com/festusplanner" target="_blank">
+        <em class="mdi mdi-instagram mdi-48px"></em>
+      </a>&ngsp;&ngsp;&ngsp;&ngsp;&ngsp;&ngsp;&ngsp;&ngsp;&ngsp;&ngsp;&ngsp;&ngsp;
+
+      <a href="https://www.facebook.com/Festus-Invitaciones-Digitales-111602028077948" target="_blank">
+        <em class="mdi mdi-facebook mdi-48px"></em>
+      </a>
+    </div>
+
+    <div class="mt-3 text-center">
+      Con amor todo se puede construir <em class="mdi mdi-heart heart-color"></em>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<button
+  mat-mini-fab
+  class="micro-fab me-2"
+  [disabled]="disabledPlus"
+>
+  <em class="mdi mdi-plus mat-success-text"></em>
+</button>
+
+<button
+  mat-mini-fab
+  class="micro-fab me-2"
+  [disabled]="disabled"
+>
+  <em class="mdi mdi-pencil mat-neutral-text"></em>
+</button>
+
+<button
+  mat-mini-fab
+  class="micro-fab"
+  [disabled]="disabled"
+  (click)="onRemove()"
+>
+  <em class="mdi mdi-trash-can mat-error-text"></em>
+</button>

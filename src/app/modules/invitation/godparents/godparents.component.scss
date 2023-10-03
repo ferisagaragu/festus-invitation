@@ -1,0 +1,60 @@
+button {
+  position: absolute;
+  right: 10px;
+  transform: translateY(-5px);
+  width: 32px;
+  height: 32px;
+  font-size: 10px;
+  padding-top: -5px;
+}
+
+mat-icon {
+  position: absolute;
+  margin-top: -8px;
+  margin-left: -12px;
+}
+
+.godparent {
+  width: 100%;
+  text-align: center;
+}
+
+.wife-background {
+  display: inline-block;
+  background-image: url(https://firebasestorage.googleapis.com/v0/b/wedding-invitation-8ad35.appspot.com/o/assets%2Fimg%2Fwife.png?alt=media&token=fa95b593-7bf0-435c-ad78-a614b89997a7);
+  background-size: 30px;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 35px;
+  height: 64px;
+}
+
+.wife-text {
+  display: inline-block;
+  margin-left: 15px;
+}
+
+.husband-background {
+  display: inline-block;
+  background-image: url(https://firebasestorage.googleapis.com/v0/b/wedding-invitation-8ad35.appspot.com/o/assets%2Fimg%2Fhusband.png?alt=media&token=6f4eb13d-fd68-4a47-ab12-04a1627ff580);
+  background-size: 30px;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 35px;
+  height: 64px;
+}
+
+.wife-text {
+  display: inline-block;
+  margin-right: 15px;
+}
+
+.row {
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+
+.heart-icon {
+  width: 55%;
+  display: inline-block;
+}

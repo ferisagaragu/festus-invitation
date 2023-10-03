@@ -1,0 +1,27 @@
+table {
+  width: 100%;
+}
+
+.mat-header-cell {
+  display: flex;
+  justify-content: center;
+}
+
+.mat-cell {
+  display: flex;
+  justify-content: center;
+}
+
+.table-container {
+  max-height: 400px;
+  overflow: auto;
+}
+
+.mat-elevation-z8 {
+  background: white;
+  height: 100%;
+}
+
+.primary-color-row {
+  background: rgba(208, 176, 114, 0.5) !important;
+}

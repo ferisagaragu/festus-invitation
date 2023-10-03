@@ -1,0 +1,21 @@
+<div class="guest-message-container mt-5 mb-5 wow animate__animated animate__slow animate__backInUp">
+  <app-container-separator [invert]="false" [type]="2"></app-container-separator>
+
+  <div class="mt-4">
+    <h3 class="p-4">
+      <label>{{ getGuestMessage(familyName) }}</label>
+      <br *ngIf="familyName !== '???' && familyName !== '*'">
+
+      <strong *ngIf="familyName !== '???' && familyName !== '*'" class="accent-text accent-text-font">
+        {{ familyName }}
+      </strong> <br *ngIf="familyName !== '???' && familyName !== '*'">
+
+      <label *ngIf="type === 'wedding'">a compartir la magia de nuestro amor</label>
+      <label *ngIf="type === 'XV'">a celebrar mis XV años</label>
+      <label *ngIf="type === 'XVIII'">a celebrar mis XVIII años</label>
+      <label *ngIf="type === 'christening'">a celebrar mi bautizo</label>
+    </h3>
+  </div>
+
+  <app-container-separator [invert]="true" [type]="2"></app-container-separator>
+</div>

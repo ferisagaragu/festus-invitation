@@ -1,0 +1,86 @@
+<div class="mt-5 mb-5">
+  <app-title-leaf *ngIf="lang != 'en'">
+    {{ type === 'wedding' ? 'Nuestros momentos juntos' : 'Mis momentos' }}
+  </app-title-leaf>
+
+  <app-title-leaf  *ngIf="lang == 'en'">
+    Our moments together.
+  </app-title-leaf>
+
+  <div *ngIf="type === 'wedding' && lang != 'en'" class="text-center moment-title">
+    Cuando te enamoras no vuelves a ser
+    la misma persona que eras antes, porque
+    es en ese momento donde empiezas a vivir
+    la vida de verdad
+  </div>
+
+  <div *ngIf="lang == 'en'" class="text-center moment-title">
+    When you fall in love, know that you will never be the person
+    you used to be again; for that is the moment you
+    start living life for real.
+  </div>
+
+  <div *ngIf="logo" class="logo text-center wow animate__animated animate__slow animate__backInUp">
+    <img src="assets/img/logo.png">
+  </div>
+
+  <div *ngIf="carouselCount <= 2" class="text-center">
+    <img
+      class="mt-5 wow animate__animated animate__slow animate__backInUp shadow-container"
+      *ngFor="let index of carouselCountIndex;"
+      [src]="'../../../../assets/img/carrousel/1 (' + index + ').png'"
+      width="300"
+    >
+  </div>
+
+  <div *ngIf="carouselCount === 3" class="text-center">
+    <img
+      class="mt-5 wow animate__animated animate__slow animate__backInUp"
+      *ngFor="let index of carouselCountIndex;"
+      [src]="'../../../../assets/img/carrousel/1 (' + index + ').png'"
+      width="300"
+      [class.logo]="index === 2"
+    >
+  </div>
+
+  <carousel
+    *ngIf="carouselCount >= 4 && !gallery"
+    class="mt-4"
+    [height]="350"
+    [autoplay]="true"
+  >
+    <div *ngFor="let index of carouselCountIndex" class="carousel-cell">
+      <img
+        [src]="'../../../../assets/img/carrousel/1 (' + index + ').png'"
+        (click)="onClick('../../../../assets/img/carrousel/1 (' + index + ').png')"
+      >
+    </div>
+  </carousel>
+
+  <div *ngIf="carouselCount >= 4 && gallery" class="gallery mt-5">
+    <div class="gallery__column">
+      <a *ngFor="let index of galleryRowOne" class="gallery__link wow animate__animated animate__slow animate__zoomIn">
+        <figure class="gallery__thumb">
+          <img
+            class="gallery__image"
+            [src]="'../../../../assets/img/carrousel/1 (' + index + ').png'"
+            (click)="onClick('../../../../assets/img/carrousel/1 (' + index + ').png')"
+          >
+        </figure>
+      </a>
+    </div>
+
+    <div class="gallery__column">
+      <a *ngFor="let index of galleryRowTwo" class="gallery__link wow animate__animated animate__slow animate__zoomIn">
+        <figure class="gallery__thumb">
+          <img
+            class="gallery__image"
+            [src]="'../../../../assets/img/carrousel/1 (' + index + ').png'"
+            (click)="onClick('../../../../assets/img/carrousel/1 (' + index + ').png')"
+          >
+        </figure>
+      </a>
+    </div>
+  </div>
+
+</div>

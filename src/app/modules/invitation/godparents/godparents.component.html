@@ -1,0 +1,444 @@
+<div class="mt-5 wow animate__animated animate__slow animate__fadeIn">
+  <button *ngIf="!onlyParents" class="mt-2" mat-mini-fab color="primary" (click)="onGoToEnd()">
+    <mat-icon>
+      expand_more
+    </mat-icon>
+  </button>
+
+  <app-title-leaf *ngIf="type === 'wedding'">
+    Nos casamos con la bendición de nuestras
+    <span *ngIf="!onlyParents">
+      padrinos
+    </span>
+
+    <span *ngIf="onlyParents">
+      madres y padrinos
+    </span>
+  </app-title-leaf>
+
+  <app-title-leaf *ngIf="type === 'XV'">
+    Celebro mis XV con la bendición de mis padres {{ wake ? 'y padrinos' : '' }}
+  </app-title-leaf>
+
+  <app-title-leaf *ngIf="type === 'XVII'">
+    Celebro mis XVIII con la bendición de mis padres {{ wake ? 'y padrinos' : '' }}
+  </app-title-leaf>
+
+  <app-title-leaf *ngIf="type === 'christening'">
+    Celebro mi bautizo con la bendición de mis padres {{ wake ? 'y padrinos' : '' }}
+  </app-title-leaf>
+
+  <div *ngIf="wedding">
+    <div *ngIf="type === 'wedding'" class="title-cursive primary-text title-before-margin ps-4 pe-4">
+      ¿Quiénes serán nuestros padrinos de matrimonio?
+    </div>
+
+    <div *ngIf="type !== 'wedding'" class="title-cursive primary-text title-before-margin ps-4 pe-4">
+      ¿Quiénes serán mis padrinos?
+    </div>
+
+    <div class="godparent mt-3">
+      <div *ngIf="type === 'wedding'" class="text-center mt-5 mb-5">
+        <img width="100" src="assets/img/wedding-icon.png">
+      </div>
+
+      <div *ngIf="wake.includes('&')" [class.mt-5]="type !== 'wedding'" class="wow animate__animated animate__slow animate__backInUp">
+        {{ wake.split('&')[0].trim() }} <br><span class="accent-text">&</span><br>
+        {{ wake.split('&')[1].trim() }}
+      </div>
+
+      <div *ngIf="!wake.includes('&')" class="wow animate__animated animate__slow animate__backInUp">
+        {{ wake }}
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="wake">
+    <div *ngIf="type === 'wedding'" class="title-cursive primary-text title-before-margin ps-4 pe-4">
+      ¿Quiénes velarán por nuestro matrimonio?
+    </div>
+
+    <div *ngIf="type !== 'wedding'" class="title-cursive primary-text title-before-margin ps-4 pe-4">
+      ¿Quiénes serán mis padrinos?
+    </div>
+
+    <div class="godparent mt-3">
+      <div *ngIf="type === 'wedding'" class="text-center mt-5 mb-5">
+        <img width="100" src="https://firebasestorage.googleapis.com/v0/b/wedding-invitation-8ad35.appspot.com/o/assets%2Fimg%2Fcouple.png?alt=media&token=2c1b24fb-d561-4f6f-8833-0f81604a8f2e">
+      </div>
+
+      <div *ngIf="wake.includes('&')" [class.mt-5]="type !== 'wedding'" class="wow animate__animated animate__slow animate__backInUp">
+        {{ wake.split('&')[0].trim() }} <br><span class="accent-text">&</span><br>
+        {{ wake.split('&')[1].trim() }}
+      </div>
+
+      <div *ngIf="!wake.includes('&')" class="wow animate__animated animate__slow animate__backInUp">
+        {{ wake }}
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="ring">
+    <div class="title-cursive primary-text title-before-margin pe-2 ps-2">
+      ¿Quiénes nos darán el símbolo de nuestro amor?
+    </div>
+
+    <div class="godparent mt-5">
+      <div class="text-center mt-5 mb-5">
+        <img width="100" src="https://firebasestorage.googleapis.com/v0/b/wedding-invitation-8ad35.appspot.com/o/assets%2Fimg%2Fring.png?alt=media&token=3cee9a16-708b-4df0-a2ac-6abd113ce4c9">
+      </div>
+
+      <div *ngIf="ring.includes('&')" class="wow animate__animated animate__slow animate__backInUp">
+        {{ ring.split('&')[0].trim() }} <br><span class="accent-text">&</span><br>
+        {{ ring.split('&')[1].trim() }}
+      </div>
+
+      <div *ngIf="!ring.includes('&')" class="wow animate__animated animate__slow animate__backInUp">
+        {{ ring }}
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="currency">
+    <div class="title-cursive primary-text title-before-margin pe-2 ps-2">
+      ¿Quién nos dará el símbolo de nuestro sustento?
+    </div>
+
+    <div class="godparent mt-5">
+      <div class="text-center mt-5 mb-5">
+        <img width="100" src="https://firebasestorage.googleapis.com/v0/b/wedding-invitation-8ad35.appspot.com/o/assets%2Fimg%2Fcurrency.png?alt=media&token=526d0bd0-9671-41d6-8bbc-03815daa289b">
+      </div>
+
+      <div *ngIf="currency.includes('&')" class="wow animate__animated animate__slow animate__backInUp">
+        {{ currency.split('&')[0].trim() }} <br><span class="accent-text">&</span><br>
+        {{ currency.split('&')[1].trim() }}
+      </div>
+
+      <div *ngIf="!currency.includes('&')" class="wow animate__animated animate__slow animate__backInUp">
+        {{ currency }}
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="rosary">
+    <div class="title-cursive primary-text title-before-margin pe-2 ps-2">
+      ¿Quiénes enlazarán nuestras vidas?
+    </div>
+
+    <div class="godparent mt-5">
+      <div class="text-center mt-5 mb-5">
+        <img width="100" src="https://firebasestorage.googleapis.com/v0/b/wedding-invitation-8ad35.appspot.com/o/assets%2Fimg%2Fstring.png?alt=media&token=8d9bd4e7-43c6-4199-b476-d778b362096b">
+      </div>
+
+      <div *ngIf="rosary.includes('&')" class="wow animate__animated animate__slow animate__backInUp">
+        {{ rosary.split('&')[0].trim() }} <br><span class="accent-text">&</span><br>
+        {{ rosary.split('&')[1].trim() }}
+      </div>
+
+      <div *ngIf="!rosary.includes('&')" class="wow animate__animated animate__slow animate__backInUp">
+        {{ rosary }}
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="bible">
+    <div class="title-cursive primary-text title-before-margin pe-2 ps-2">
+      ¿Quiénes nos darán el símbolo de nuestra fe?
+    </div>
+
+    <div class="godparent mt-3">
+      <div class="text-center mt-5 mb-5">
+        <img width="100" src="https://firebasestorage.googleapis.com/v0/b/wedding-invitation-8ad35.appspot.com/o/assets%2Fimg%2Fbible.png?alt=media&token=5d0e249b-8fe3-4ae4-8af8-1b0cc5fe3a76">
+      </div>
+
+      <div *ngIf="bible.includes('&')" class="wow animate__animated animate__slow animate__backInUp">
+        {{ bible.split('&')[0].trim() }} <br><span class="accent-text">&</span><br>
+        {{ bible.split('&')[1].trim() }}
+      </div>
+
+      <div *ngIf="!bible.includes('&')" class="wow animate__animated animate__slow animate__backInUp">
+        {{ bible }}
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="candle" class="godparent mt-3">
+    <div class="title-cursive primary-text title-before-margin pe-2 ps-2">
+      ¿Quién nos ayudara a iluminar nuestro comino?
+    </div>
+
+    <div class="text-center mt-5 mb-5">
+      <img width="100" src="assets/img/descarga.png">
+    </div>
+
+    <div *ngIf="candle.includes('&')" class="wow animate__animated animate__slow animate__backInUp">
+      {{ candle.split('&')[0].trim() }} <br><span class="accent-text">&</span><br>
+      {{ candle.split('&')[1].trim() }}
+    </div>
+
+    <div *ngIf="!candle.includes('&')" class="wow animate__animated animate__slow animate__backInUp">
+      {{ candle }}
+    </div>
+  </div>
+
+  <div *ngIf="offerings" class="godparent mt-3">
+    <div class="title-cursive primary-text title-before-margin pe-2 ps-2">
+      ¿Quién dará las ofrendas?
+    </div>
+
+    <div class="text-center mt-5 mb-5">
+      <img width="100" src="assets/img/grapes.png">
+    </div>
+
+    <div *ngIf="offerings.includes('&')" class="wow animate__animated animate__slow animate__backInUp">
+      {{ offerings.split('&')[0].trim() }} <br><span class="accent-text">&</span><br>
+      {{ offerings.split('&')[1].trim() }}
+    </div>
+
+    <div *ngIf="!offerings.includes('&')" class="wow animate__animated animate__slow animate__backInUp">
+      {{ offerings }}
+    </div>
+  </div>
+
+  <div *ngIf="flower" class="godparent mt-3">
+    <div class="title-cursive primary-text title-before-margin pe-2 ps-2">
+      ¿Quiénes le dará el ramo a la novia?
+    </div>
+
+    <div class="text-center mt-5 mb-5">
+      <img width="100" src="https://firebasestorage.googleapis.com/v0/b/wedding-invitation-8ad35.appspot.com/o/assets%2Fimg%2Fflower.png?alt=media&token=150edb59-c81d-4300-8d1e-fa3f69d18c65">
+    </div>
+
+    <div *ngIf="flower.includes('&')" class="wow animate__animated animate__slow animate__backInUp">
+      {{ flower.split('&')[0].trim() }} <br><span class="accent-text">&</span><br>
+      {{ flower.split('&')[1].trim() }}
+    </div>
+
+    <div *ngIf="!flower.includes('&')" class="wow animate__animated animate__slow animate__backInUp">
+      {{ flower }}
+    </div>
+  </div>
+
+  <div *ngIf="cushion">
+    <div class="title-cursive primary-text title-before-margin pe-2 ps-2">
+      ¿Quiénes serán nuestro apoyo en la ceremonia?
+    </div>
+
+    <div class="godparent mt-3">
+      <div class="text-center mt-5 mb-5">
+        <img width="100" src="https://firebasestorage.googleapis.com/v0/b/wedding-invitation-8ad35.appspot.com/o/assets%2Fimg%2Fpillow.png?alt=media&token=8bdcd6ff-6525-4580-8d56-75af5d9dac7e">
+      </div>
+
+      <div *ngIf="cushion.includes('&')" class="wow animate__animated animate__slow animate__backInUp">
+        {{ cushion.split('&')[0].trim() }} <br><span class="accent-text">&</span><br>
+        {{ cushion.split('&')[1].trim() }}
+      </div>
+
+      <div *ngIf="!cushion.includes('&')" class="wow animate__animated animate__slow animate__backInUp">
+        {{ cushion }}
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="cup">
+    <div class="title-cursive primary-text title-before-margin pe-2 ps-2">
+      ¿Quiénes guiarán el primer Brindis de Nuestro Matrimonio?
+    </div>
+
+    <div class="godparent mt-3">
+      <div class="text-center mt-5 mb-5">
+        <img width="100" src="https://firebasestorage.googleapis.com/v0/b/wedding-invitation-8ad35.appspot.com/o/assets%2Fimg%2Fpngarea.com_clipart-wedding-champagne-5016484.png?alt=media&token=a2eff93f-5334-4239-8384-40f944d27db8">
+      </div>
+
+      <div *ngIf="cup.includes('&')" class="wow animate__animated animate__slow animate__backInUp">
+        {{ cup.split('&')[0].trim() }} <br><span class="accent-text">&</span><br>
+        {{ cup.split('&')[1].trim() }}
+      </div>
+
+      <div *ngIf="!cup.includes('&')" class="wow animate__animated animate__slow animate__backInUp">
+        {{ cup }}
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="cup">
+    <div class="title-cursive primary-text title-before-margin pe-2 ps-2">
+      ¿Quiénes guiarán el primer Brindis de Nuestro Matrimonio?
+    </div>
+
+    <div class="godparent mt-3">
+      <div class="text-center mt-5 mb-5">
+        <img width="100" src="https://firebasestorage.googleapis.com/v0/b/wedding-invitation-8ad35.appspot.com/o/assets%2Fimg%2Fpngarea.com_clipart-wedding-champagne-5016484.png?alt=media&token=a2eff93f-5334-4239-8384-40f944d27db8">
+      </div>
+
+      <div *ngIf="cup.includes('&')" class="wow animate__animated animate__slow animate__backInUp">
+        {{ cup.split('&')[0].trim() }} <br><span class="accent-text">&</span><br>
+        {{ cup.split('&')[1].trim() }}
+      </div>
+
+      <div *ngIf="!cup.includes('&')" class="wow animate__animated animate__slow animate__backInUp">
+        {{ cup }}
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="christ">
+    <div class="title-cursive primary-text title-before-margin pe-2 ps-2">
+      ¿Quién nos dará nuestro símbolo de fe?
+    </div>
+
+    <div class="godparent mt-3">
+      <div class="text-center mt-5 mb-5">
+        <app-icon-christ></app-icon-christ>
+      </div>
+
+      <div *ngIf="christ.includes('&')" class="wow animate__animated animate__slow animate__backInUp">
+        {{ christ.split('&')[0].trim() }} <br><span class="accent-text">&</span><br>
+        {{ christ.split('&')[1].trim() }}
+      </div>
+
+      <div *ngIf="!christ.includes('&')" class="wow animate__animated animate__slow animate__backInUp">
+        {{ christ }}
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="virgin">
+    <div class="title-cursive primary-text title-before-margin pe-2 ps-2">
+      ¿Quién nos dará el símbolo de nuestra madre en el cielo?
+    </div>
+
+    <div class="godparent mt-3">
+      <div class="text-center mt-5 mb-5">
+        <app-icon-virgin></app-icon-virgin>
+      </div>
+
+      <div *ngIf="virgin.includes('&')" class="wow animate__animated animate__slow animate__backInUp">
+        {{ virgin.split('&')[0].trim() }} <br><span class="accent-text">&</span><br>
+        {{ virgin.split('&')[1].trim() }}
+      </div>
+
+      <div *ngIf="!virgin.includes('&')" class="wow animate__animated animate__slow animate__backInUp">
+        {{ virgin }}
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="medal">
+    <div class="title-cursive primary-text title-before-margin pe-2 ps-2">
+      ¿Quién nos dará nuestra medalla?
+    </div>
+
+    <div class="godparent mt-3">
+      <div class="text-center mt-5 mb-5">
+        <app-icon-medal></app-icon-medal>
+      </div>
+
+      <div *ngIf="medal.includes('&')" class="wow animate__animated animate__slow animate__backInUp">
+        {{ medal.split('&')[0].trim() }} <br><span class="accent-text">&</span><br>
+        {{ medal.split('&')[1].trim() }}
+      </div>
+
+      <div *ngIf="!medal.includes('&')" class="wow animate__animated animate__slow animate__backInUp">
+        {{ medal }}
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="medal">
+    <div class="title-cursive primary-text title-before-margin pe-2 ps-2">
+      ¿Quiénes nos acompañaran en ese día especial?
+    </div>
+
+    <div class="row godparent mt-3 text-center mt-5 mb-5">
+      <div class="col-6">
+        <div class="sub-title">
+          Damas
+        </div><br>
+
+        <div *ngFor="let dama of damas" class="wow animate__animated animate__slow animate__backInUp">
+          {{ dama }}
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="sub-title">
+          Pajecitos
+        </div><br>
+
+        <div *ngFor="let pajecito of pajecitos" class="wow animate__animated animate__slow animate__backInUp">
+          {{ pajecito }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="type !== 'wedding'">
+    <div class="title-cursive primary-text title-before-margin pe-2 ps-2">
+      Gracias a ustedes y a su amor, he llegado hasta aquí
+    </div>
+
+    <div class="godparent mt-3">
+      <div class="text-center mt-5 mb-5 ps-5 pe-5">
+        <div class="heart-icon">
+          <app-icon-heart></app-icon-heart>
+        </div>
+      </div>
+
+      <div class="wow animate__animated animate__slow animate__backInUp">
+        {{ parentWife }} <br><span class="accent-text">&</span><br>
+        {{ parentHusband }}
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="parentWife && parentHusband && type === 'wedding'">
+    <div *ngIf="lang != 'en'" class="title-cursive primary-text title-before-margin pe-2 ps-2">
+      Gracias a ustedes y a su amor, hemos llegado hasta aquí
+    </div>
+
+    <div *ngIf="lang == 'en'" class="title-cursive primary-text title-before-margin pe-2 ps-2">
+      Thanks to you, we have made it this far
+    </div>
+
+    <div class="godparent mt-3 mb-5">
+      <div class="text-center mt-5 mb-5">
+        <div class="wife-background"></div>
+
+        <div class="wife-text wow animate__animated animate__slow animate__backInUp">
+          <div *ngIf="parentWife.includes('&')">
+            {{ parentWife.split('&')[0].trim() }} <br><span class="accent-text">  </span><br>
+            {{ parentWife.split('&')[1].trim() }}
+          </div>
+
+          <div *ngIf="!parentWife.includes('&')">
+            {{ parentWife }}
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-5 mb-5 ps-5 pe-5">
+        <div class="heart-icon">
+          <app-icon-heart></app-icon-heart>
+        </div>
+      </div>
+
+      <div class="text-center mt-5 mb-3">
+        <div class="wife-text wow animate__animated animate__slow animate__backInUp">
+          <div *ngIf="parentHusband.includes('&')">
+            {{ parentHusband.split('&')[0].trim() }} <br><span class="accent-text"> </span><br>
+            {{ parentHusband.split('&')[1].trim() }}
+          </div>
+
+          <div *ngIf="!parentHusband.includes('&')" style="transform: translateY(-20px);">
+            {{ parentHusband }}
+          </div>
+        </div>
+
+        <div class="husband-background"></div>
+      </div>
+    </div>
+  </div>
+
+  <div #godParentsEnd></div>
+</div>

@@ -1,0 +1,28 @@
+<div *ngIf="load" class="pt-4">
+  <mat-spinner strokeWidth="5"></mat-spinner>
+</div>
+
+<app-intro *ngIf="!developMode" (open)="openEnvelope = true"></app-intro>
+
+<div class="background animate__animated animate__fadeIn animate__fast wow" *ngIf="!load && invitation && (openEnvelope || developMode)">
+  <app-pre-title *ngIf="preTitle" [lang]="invitation.lang"></app-pre-title>
+  <app-title [lang]="invitation.lang"></app-title>
+  <app-come-message></app-come-message>
+  <app-guest-message [lang]="invitation.lang" [familyName]="invitation.familyName"></app-guest-message>
+  <app-godparents [lang]="invitation.lang"></app-godparents>
+  <app-timer [lang]="invitation.lang"></app-timer>
+  <app-moment [lang]="invitation.lang"></app-moment>
+  <app-location [lang]="invitation.lang"></app-location>
+  <app-advice [lang]="invitation.lang"></app-advice>
+  <app-without-children></app-without-children>
+  <app-gift [lang]="invitation.lang"></app-gift>
+  <app-whatsapp-confirmation [lang]="invitation.lang"></app-whatsapp-confirmation>
+  <app-form-guest [lang]="invitation.lang" [invitation]="invitation"></app-form-guest>
+  <app-faq [lang]="invitation.lang"></app-faq>
+</div>
+
+<div *ngIf="!load && !invitation" class="pt-4 ps-4 pe-4">
+  <mat-card>
+    <h2 class="accent-text">Upps no se encontró la invitación</h2>
+  </mat-card>
+</div>

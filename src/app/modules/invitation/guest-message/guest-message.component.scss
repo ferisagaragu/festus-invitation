@@ -1,0 +1,47 @@
+@import '~src/assets/stylesheets/colors';
+
+@media (min-width: 700px) {
+  h3 {
+    font-size: 18px !important;
+  }
+}
+
+audio {
+  display: none;
+}
+
+h3 {
+  font-family: JosefinSans-Regular !important;
+}
+
+strong {
+  font-family: GreatVibes-Regular !important;
+  font-size: 24px;
+  letter-spacing: 2px;
+}
+
+.guest-message-container {
+  text-align: center;
+}
+
+.accent-text-font {
+  font-family: DancingScript-Regular !important;
+  font-size: 16px !important;
+}
+
+.pulse {
+  animation: pulse-animation 2s infinite;
+}
+
+@keyframes pulse-animation {
+  0% {
+    box-shadow: 0 0 0 0px $accent-color-transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 10px $accent-color-transparent-normal;
+  }
+}
+
+.top-text {
+  margin-top: 4px;
+}

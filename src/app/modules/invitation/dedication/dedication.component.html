@@ -1,0 +1,99 @@
+<div class="mt-1 mb-5 wow animate__animated animate__slow animate__backInUp">
+  <app-title-flower>Nuestra Historia</app-title-flower>
+
+  <div *ngIf="dedicatory" class="history">
+    <span *ngIf="lang != 'en'" #spanDedicatory></span>
+    <span *ngIf="lang == 'en'">
+      Our story indicates that this process hasn’t been an easy one.
+      No matter how long we have been together or the distance
+      keeping us apart and that will continue to do so.
+      We are convinced of making our lives unite as one.
+      In good times and in bad times there is always a reason to keep the fire
+      of our love lit. Even though there are 3,766 km between us, you, my love,
+      have always shown me your loyalty. A love like this will always be worth
+      the wait.
+    </span>
+  </div>
+
+  <div *ngIf="dedicatoryWife">
+    <h3 *ngIf="lang != 'en' && !dedicatoryWifeTitle" class="accent-text text-center mt-5">
+      Para ti mi amado esposo
+    </h3>
+
+    <h3 *ngIf="lang != 'en' && dedicatoryWifeTitle" class="accent-text text-center mt-5">
+      {{ dedicatoryWifeTitle }}
+    </h3>
+
+    <h3 *ngIf="lang == 'en'" class="accent-text text-center mt-5">
+      For you my dear husband
+    </h3>
+
+    <div class="text-center history">
+      <span *ngIf="lang != 'en'" #spanDedicatoryWife></span>
+      <span *ngIf="lang == 'en'">
+        I just want to be a part of your story. The story where you tell
+        everyone that you are finally happy
+      </span>
+      <br>
+      <br>
+      <label *ngIf="lang != 'en'">Con todo mi amor.</label>
+      <label *ngIf="lang == 'en'">With all my love:</label>
+      <br>
+      <br>
+
+      <div class="sign accent-text">
+        <span *ngIf="!invertNames">
+          {{ invitationName.split(' & ')[0] }}
+        </span>
+
+        <span *ngIf="invertNames">
+          {{ invitationName.split(' & ')[1] }}
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="big-and-section wow animate__animated animate__jackInTheBox">
+    <img src="assets/img/circle.png">
+  </div>
+
+  <div *ngIf="dedicatoryHusband">
+    <h3 *ngIf="lang != 'en' && !dedicatoryHusbandTitle" class="accent-text text-center mt-5">
+      Para ti mi amada esposa
+    </h3>
+
+    <h3 *ngIf="lang != 'en' && dedicatoryHusbandTitle" class="accent-text text-center mt-5">
+      {{ dedicatoryHusbandTitle }}
+    </h3>
+
+    <h3 *ngIf="lang == 'en'" class="accent-text text-center mt-5">
+      For you my dear wife
+    </h3>
+
+    <div class="text-center history">
+      <span *ngIf="lang != 'en'" #spanDedicatoryHusband></span>
+      <span *ngIf="lang == 'en'">
+        Our love involves being together; yet, being apart leads to an
+        even stronger love. Distance and time haven’t gone easy on us, however,
+        you have shown me how pure and strong your love for me is.
+        Our love is one for eternity.
+      </span>
+      <br>
+      <br>
+      <label *ngIf="lang != 'en'">Con todo mi amor.</label>
+      <label *ngIf="lang == 'en'">with all my love:</label>
+      <br>
+      <br>
+
+      <div class="sign accent-text">
+        <span *ngIf="!invertNames">
+          {{ invitationName.split(' & ')[1] }}
+        </span>
+
+        <span *ngIf="invertNames">
+          {{ invitationName.split(' & ')[0] }}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

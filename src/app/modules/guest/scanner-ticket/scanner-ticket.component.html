@@ -1,0 +1,9 @@
+<div class="root-container">
+  <div class="title-cursive pt-4 pb-4">
+    Escanea al invitado
+  </div>
+
+  <div qrScanner [pause]="pauseScanner" (scan)="onScan($event)"></div>
+</div>
+
+<app-view-ticket-status *ngIf="showResponse" [code]="code"></app-view-ticket-status>

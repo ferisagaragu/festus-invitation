@@ -1,0 +1,97 @@
+@import '~src/assets/stylesheets/colors';
+
+audio {
+  display: none;
+}
+
+.envelope-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 90vw;
+  height: 100vh;
+  filter: drop-shadow(3px 5px 2px rgba(255, 128, 0, 0.5));
+}
+
+.envelope-left-animation {
+  animation: envelope-left-open 3s normal;
+}
+
+.envelope-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 80vw;
+  height: 100vh;
+  filter: drop-shadow(-3px 0px 2px rgba(255, 128, 0, 0.5));
+}
+
+.envelope-right-animation {
+  animation: envelope-right-open 3s normal;
+}
+
+.seal-position {
+  position: absolute;
+  z-index: 3;
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+}
+
+.seal-outline {
+  border-color: #ff8000;
+  border-width: 2px;
+  border-style: solid;
+  width: 7rem;
+  height: 7rem;
+  z-index: 1;
+  border-radius: 100%;
+  padding: 1%;
+  display: inline-block;
+}
+
+.seal {
+  border-color: #ff8000;
+  border-width: 2px;
+  border-style: solid;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  border-radius: 100%;
+  color: #ff8000;
+  text-align: center;
+}
+
+.initials {
+  font-family: DancingScript-Regular, serif;
+  font-size: 32px;
+}
+
+.initials-container {
+  height: 100%;
+}
+
+.seal-animation {
+  animation: seal-open 3s normal;
+}
+
+@keyframes envelope-left-open {
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes envelope-right-open {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes seal-open {
+  100% {
+    transform: translateX(300%);
+  }
+}
+

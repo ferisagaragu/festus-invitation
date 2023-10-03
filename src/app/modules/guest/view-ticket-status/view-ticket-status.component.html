@@ -1,0 +1,35 @@
+<div *ngIf="code === 0" class="ticket-status-container ticket-good">
+  <div class="row">
+    <div class="col-md-12 text-center icon-container">
+      <i class="mdi mdi-thumb-up icon"></i>
+    </div>
+
+    <div class="col-md-12 mt-3 text-center text">
+      Boleto Valido
+    </div>
+  </div>
+</div>
+
+<div *ngIf="code === 1" class="ticket-status-container ticket-bad">
+  <div class="row">
+    <div class="col-md-12 text-center icon-container">
+      <i class="mdi mdi-thumb-down icon"></i>
+    </div>
+
+    <div class="col-md-12 mt-3 text-center text">
+      Boleto Invalido
+    </div>
+  </div>
+</div>
+
+<div *ngIf="code === 2" class="ticket-status-container ticket-invalid">
+  <div class="row">
+    <div class="col-md-12 text-center icon-container">
+      <i class="mdi mdi-link-off icon"></i>
+    </div>
+
+    <div class="col-md-12 mt-3 text-center text">
+      Qr Invalido
+    </div>
+  </div>
+</div>

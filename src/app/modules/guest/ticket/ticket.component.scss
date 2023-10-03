@@ -1,0 +1,63 @@
+@import '~src/assets/stylesheets/colors';
+
+.mat-spinner {
+  margin: 0 auto !important;
+}
+
+.ticket-container {
+  color: #ffffff !important;
+  height: 200px;
+  width: 320px;
+  margin-bottom: 20px;
+  box-shadow: 2px 2px 6px rgba(255, 255, 255, 0.47);
+  border-color: rgba(255, 255, 255, 0.38);
+  border-width: 0.25px;
+  border-style: inset;
+  display: inline-block;
+  position: relative;
+}
+
+.corner-left {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 40%;
+}
+
+.corner-right {
+  position: absolute;
+  transform: rotate(180deg);
+  right: 0;
+  bottom: 0;
+  width: 40%;
+}
+
+.title {
+  color: $primary-color;
+  font-family: GreatVibes-Regular;
+  font-size: 28px;
+  padding-right: 32px;
+  padding-top: 20px;
+}
+
+.guest-container {
+  height: 100px;
+  padding: 2.4rem;
+  color: white !important;
+}
+
+.guest-container-qr {
+  height: 100px;
+}
+
+.location {
+  color: $primary-color;
+  font-size: 12px;
+  text-align: left;
+  padding-left: 32px;
+  font-size: 10px;
+}
+
+.card {
+  background: black !important;
+}

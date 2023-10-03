@@ -1,0 +1,24 @@
+.guest-list-container {
+  max-height: 100%;
+  width: 100%;
+  background: #cccccc;
+  padding: 10px;
+}
+
+.mat-spinner {
+  margin: 0 auto !important;
+}
+
+.guest-card {
+  margin-left: 15px;
+}
+
+.dove-icon {
+  background-image: url(https://firebasestorage.googleapis.com/v0/b/wedding-invitation-8ad35.appspot.com/o/assets%2Fimg%2Fdove.png?alt=media&token=b0598351-c706-49e4-bad0-9a943d9c4a00);
+  background-repeat: no-repeat;
+  background-size: 45px;
+  width: 45px;
+  height: 60px;
+  position: absolute;
+  transform: translateY(-40px) translateX(-45px);
+}

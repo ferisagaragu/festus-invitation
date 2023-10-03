@@ -1,0 +1,51 @@
+<!--autoplay-->
+<audio #audioPlayer controls>
+  <source
+    [src]="musicUrl"
+    type="audio/mp3">
+  audio
+</audio>
+
+<div *ngIf="!envelopeOpen">
+  <svg
+    #envelopeLeft
+    viewBox="0 0 512 512"
+    preserveAspectRatio="none"
+    class="envelope-left"
+  >
+    <path d="M0,0H512L296.18,184,372,248,284.7,320.53,507.91,512H0Z" [style.fill]="envelopeColor"/>
+  </svg>
+
+  <svg
+    #envelopeRight
+    viewBox="0 0 512.14 512"
+    preserveAspectRatio="none"
+    class="envelope-right"
+  >
+    <path d="M0,256.73s-.91-6.17,8.39-13.43c12-9.37,176.71-108.59,403.68-243.3H512.14V512H364.8C167.14,377.73,22.87,279.71,14.4,273.91A50.54,50.54,0,0,1,7.21,268C5.79,266.56.76,261.55,0,256.73Z" [style.fill]="envelopeColor"/>
+  </svg>
+
+  <table class="seal-position" (click)="onOpen(envelopeLeft,envelopeRight,seal)">
+    <tbody>
+      <tr>
+        <td class="align-middle">
+          <div #seal class="seal-outline">
+            <div class="seal">
+              <table class="initials-container">
+                <tbody>
+                  <tr>
+                    <td class="align-middle">
+                      <span class="align-middle initials">
+                        {{ initials }}
+                      </span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

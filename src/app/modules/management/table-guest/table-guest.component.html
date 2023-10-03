@@ -1,0 +1,91 @@
+<div class="mat-elevation-z8">
+  <mat-progress-bar *ngIf="load" mode="indeterminate"></mat-progress-bar>
+
+  <app-chip-filter
+    #chipFilter
+    (filter)="onSelectFilter($event)"
+    (inputKeyup)="applyFilter($event)"
+  >
+    <app-button-action
+      (remove)="onRemove()"
+      [disabledPlus]="load || useFilters || searchText !== ''"
+      [disabled]="load || !selectedRow"
+    >
+    </app-button-action>
+  </app-chip-filter>
+
+  <div class="table-container scroll">
+    <mat-table matSort [dataSource]="dataSource">
+      <ng-container matColumnDef="name">
+        <mat-header-cell mat-sort-header *matHeaderCellDef>Nombre</mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          {{ row.name }} {{ row.surname }} {{ row.motherSurname }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="familyName">
+        <mat-header-cell mat-sort-header *matHeaderCellDef>Familia</mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          {{ row.familyName }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <mat-header-cell mat-sort-header *matHeaderCellDef>Status</mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <div [matTooltip]="getStatusName(row.status)">
+            <em
+              class="mdi mdi-ticket-account mdi-26px"
+              [class.disabled-link]="row.status === 0"
+              [class.mat-neutral-text]="row.status === 1"
+              [class.mat-success-text]="row.status === 2"
+              [class.mat-error-text]="row.status === 3"
+            >
+            </em>
+          </div>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="confirmDate">
+        <mat-header-cell mat-sort-header *matHeaderCellDef>Fecha de confirmación</mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <span *ngIf="row.confirmDate">
+            {{ row.confirmDate | date: 'dd \'de\' MMMM \'del\' yyyy hh:mm a' }}
+          </span>
+
+          <span *ngIf="!row.confirmDate">
+            Aun no hay fecha
+          </span>
+
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true;"></mat-header-row>
+      <mat-row
+        *matRowDef="let row; columns: displayedColumns;"
+        class="pointer"
+        [class.primary-color-row]="selectedRow === row"
+        (click)="onSelectRow(row)"
+      >
+      </mat-row>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">
+          <span *ngIf="useFilters && !searchText && !load">
+            No se encontraron resultados con los filtros seleccionados <br>
+          </span>
+
+          <span *ngIf="searchText && !load">
+            No se encontraron resultados para "{{ searchText }}"
+          </span>
+
+          <span *ngIf="load">
+            Cargando los invitados...
+          </span>
+        </td>
+      </tr>
+    </mat-table>
+  </div>
+
+  <mat-paginator [pageSizeOptions]="[10, 20, 40, 100]"></mat-paginator>
+</div>

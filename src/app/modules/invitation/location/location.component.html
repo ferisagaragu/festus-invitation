@@ -1,0 +1,114 @@
+<div class="mt-4">
+  <div class="mb-4">
+    <app-container-separator [invert]="false" [type]="2"></app-container-separator>
+  </div>
+
+  <app-title-leaf *ngIf="lang != 'en'">
+    ¿Cuándo & Dónde?
+  </app-title-leaf>
+
+  <app-title-leaf *ngIf="lang == 'en'">
+    When and where?
+  </app-title-leaf>
+
+  <div *ngIf="lang != 'en'" class="text-center pe-5 ps-5 pt-5">
+    Nos encantará contar con tu compañía el día más bello de {{ type === 'wedding' ? 'nuestras vidas' : 'mi vida' }}
+  </div>
+
+  <div *ngIf="lang == 'en'"  class="text-center pe-5 ps-5 pt-5">
+    We would love to count on your presence in the most beautiful
+    day of our lives.
+  </div>
+
+  <div class="church-location-container-out"></div>
+  <div class="church-location-container" [style.background-size]="churchCorner ? 'contain' : 'cover'">
+    <div class="church-location-text primary-text" [style.margin-left]="churchCorner ? '140px' : '22px'">
+      <span *ngIf="!churchMainTitle" class="accent-text cursive">Ceremonia</span>
+      <span *ngIf="churchMainTitle" class="accent-text cursive">{{ churchMainTitle }}</span> <br><br>
+      {{ churchDate }}<br><br>
+      <span #churchTimeSpan></span><br><br>
+      <span *ngIf="churchTitle">{{ churchTitle }}</span><br *ngIf="churchTitle"><br *ngIf="churchTitle">
+      <span *ngIf="!churchLocation">{{ churchAddress }}</span>
+      <span *ngIf="churchLocation">{{ churchLocation }}</span>
+    </div>
+  </div>
+
+  <div
+    *ngIf="weddingMap"
+    googleMap
+    class="location-map mt-5"
+    markerIcon="https://firebasestorage.googleapis.com/v0/b/wedding-invitation-8ad35.appspot.com/o/assets%2Fsvg%2Fmap-marker.svg?alt=media&token=6e0c2981-e4a3-4b53-9aca-10a2e5ddc2ca"
+    [lat]="churchLat"
+    [lng]="churchLng"
+    [zoom]="17"
+    [viewMode]="true"
+    [fullscreenControl]="true"
+    [disableDefaultUI]="true"
+  >
+  </div>
+
+  <div class="text-center mt-4 mb-5">
+    <button *ngIf="churchLink" mat-stroked-button color="accent" (click)="openLink(0)">
+      <em class="mdi mdi-road"></em>
+      Abrir ubicación
+    </button>
+  </div>
+
+  <div *ngIf="eventLat !== 0 && eventLng !== 0" class="party-location-container-out "></div>
+  <div *ngIf="eventLat !== 0 && eventLng !== 0" class="party-location-container" [style.background-size]="eventCorner ? 'contain' : 'cover'">
+    <div class="party-location-text primary-text" [style.margin-right]="eventCorner ? '140px' : '22px'">
+      <span *ngIf="!eventMainTitle" class="accent-text cursive">Recepción</span>
+      <span *ngIf="eventMainTitle" class="accent-text cursive">{{ eventMainTitle }}</span> <br><br>
+      {{ eventDate }}<br><br>
+      <span #eventTimeSpan></span><br><br>
+      <span *ngIf="eventTitle">{{ eventTitle }}</span><br *ngIf="eventTitle"><br *ngIf="eventTitle">
+      <span *ngIf="!eventLocation">{{ eventAddress }}</span>
+      <span *ngIf="eventLocation">{{ eventLocation }}</span>
+    </div>
+  </div>
+
+  <div
+    *ngIf="(eventLat !== 0 && eventLng !== 0) && eventMap"
+    googleMap
+    class="location-map mt-5"
+    markerIcon="https://firebasestorage.googleapis.com/v0/b/wedding-invitation-8ad35.appspot.com/o/assets%2Fsvg%2Fmap-marker.svg?alt=media&token=6e0c2981-e4a3-4b53-9aca-10a2e5ddc2ca"
+    [lat]="eventLat"
+    [lng]="eventLng"
+    [zoom]="17"
+    [viewMode]="true"
+    [fullscreenControl]="true"
+    [disableDefaultUI]="true"
+  >
+  </div>
+
+  <div *ngIf="eventLat !== 0 && eventLng !== 0 " class="text-center mt-4 mb-5">
+    <button *ngIf="eventLink" mat-stroked-button color="accent" (click)="openLink(1)">
+      <em class="mdi mdi-road"></em>
+      Abrir ubicación
+    </button>
+  </div>
+
+  <div *ngIf="calendarLink" class="pt-5">
+    <app-title-leaf>
+      Agrega nuestro evento a tu calendario
+    </app-title-leaf>
+
+    <div class="text-center ps-4 pe-4">
+      <img style="border-radius: 0px; width: 35%; height: 35%;" width="35%" src="assets/img/calendar-icon.png">
+
+      <br>
+      <br>
+      <br>
+
+      <a [href]="calendarLink">
+        <button mat-stroked-button color="accent">
+          <em class="mdi mdi-calendar"></em>
+          Agregar a mi calendario
+        </button>
+      </a>
+    </div>
+
+  </div>
+
+  <app-container-separator *ngIf="!itinerary" [invert]="true" [type]="2"></app-container-separator>
+</div>

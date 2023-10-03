@@ -1,0 +1,9 @@
+<app-separator *ngIf="!invert && separatorType === 0"></app-separator>
+<app-separator-two *ngIf="!invert && separatorType === 1"></app-separator-two>
+<app-separator-trhee *ngIf="!invert && separatorType === 2"></app-separator-trhee>
+<app-separator-four *ngIf="!invert && separatorType === 3" [invert]="invert"></app-separator-four>
+
+<app-separator-invert *ngIf="invert && separatorType === 0"></app-separator-invert>
+<app-separator-invert-two *ngIf="invert && separatorType === 1"></app-separator-invert-two>
+<app-separator-invert-trhee *ngIf="invert && separatorType === 2"></app-separator-invert-trhee>
+<app-separator-four *ngIf="invert && separatorType === 3" [invert]="invert"></app-separator-four>

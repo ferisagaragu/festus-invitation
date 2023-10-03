@@ -1,0 +1,95 @@
+@import '~src/assets/stylesheets/colors';
+
+@media (max-width: 699px) {
+  .cursive {
+    font-size: 20px !important;
+  }
+
+  .church-location-text {
+    margin-top: 20px !important;
+    font-size: 12px !important;
+  }
+
+  .party-location-text {
+    margin-top: 30px !important;
+    font-size: 12px !important;
+  }
+}
+
+.church-location-container {
+  border-width: 3px;
+  border-style: solid;
+  border-color: $primary-color;
+  margin-top: 20px;
+  margin-left: 30px;
+  margin-right: 30px;
+  height: 400px;
+  background: transparent url(~src/assets/img/flower-corner-left.png) no-repeat;
+  background-size: contain;
+}
+
+.church-location-container-out {
+  border-width: 3px;
+  border-style: solid;
+  border-color: $primary-color;
+  height: 400px;
+  position: relative;
+  margin: 40px 30px -410px;
+  transform: rotate(5deg);
+}
+
+.church-location-text {
+  margin-top: 75px;
+  font-size: 18px;
+  text-align: center;
+  margin-left: 140px;
+  margin-right: 20px;
+}
+
+.party-location-container {
+  border-width: 3px;
+  border-style: solid;
+  border-color: $accent-color;
+  margin-left: 30px;
+  margin-right: 30px;
+  height: 420px;
+  background-position-y: -1px !important;
+  background: transparent url(~src/assets/img/flower-corner-right.png) no-repeat right;
+  background-size: contain;
+}
+
+.party-location-container-out {
+  border-width: 3px;
+  border-style: solid;
+  border-color: $accent-color;
+  height: 420px;
+  position: relative;
+  margin: 40px 30px -420px;
+  transform: rotate(-5deg);
+}
+
+.party-location-text {
+  margin-top: 110px;
+  font-size: 18px;
+  text-align: center;
+  margin-right: 140px;
+  margin-left: 20px;
+}
+
+.cursive {
+  font-size: 26px;
+}
+
+.location-map {
+  width: 100%;
+  margin-top: 30px;
+  height: 300px !important;
+  z-index: 10;
+}
+
+img {
+  width: 250px;
+  height: 250px;
+  margin-top: 40px;
+  border-radius: 80px;
+}

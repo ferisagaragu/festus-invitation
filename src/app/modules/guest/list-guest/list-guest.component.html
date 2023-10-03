@@ -1,0 +1,84 @@
+<div class="container mt-5">
+  <mat-form-field appearance="fill">
+    <mat-label>Busca una invitación</mat-label>
+
+    <input
+      #searchInput
+      matInput
+      placeholder="Buscar..."
+      (keyup)="search(searchInput)"
+    >
+  </mat-form-field>
+
+  <div class="row">
+    <div *ngIf="!onlyTickets" class="col-md-12">
+      <strong>
+        Boletos aceptados <em class="mdi mdi-check primary-text"></em>:
+      </strong>
+
+      {{ accept }}
+    </div>
+
+    <div *ngIf="!onlyTickets" class="col-md-12">
+      <strong>
+        Boletos no aceptados <em class="mdi mdi-close primary-text"></em>:
+      </strong>
+
+      {{ notAccept }}
+    </div>
+
+    <div class="col-md-12">
+      <strong>
+        Número de invitados:
+      </strong>
+
+      {{ accept + notAccept }}
+    </div>
+  </div>
+</div>
+
+<div class="container mt-5">
+  <div *ngFor="let invitation of invitations">
+    <div>
+      <h3>
+        <strong>
+          {{ invitation.familyName }} <span *ngIf="invitation.lang == 'en'"><em style="color: cornflowerblue">&ensp;&ensp;en</em></span>
+        </strong>
+      </h3>
+    </div>
+
+    <div
+      *ngFor="let guest of invitation.guests"
+      class="row"
+    >
+      <div class="col-md-12">
+        {{ guest.name }}
+        <em *ngIf="guest.status === 2 && (!onlyTickets)" class="mdi mdi-check primary-text"></em>
+        <em *ngIf="guest.status !== 2 && (!onlyTickets)" class="mdi mdi-close primary-text"></em>
+      </div>
+    </div>
+
+    <br>
+
+    <a
+      target="_blank"
+      [href]="baseUrl + invitation.uuid"
+    >
+      <button mat-stroked-button color="accent">
+        <em class="mdi mdi-send mdi-18px"></em>
+        Ir a la invitación
+      </button>
+    </a>
+    &nbsp;
+
+    <button
+      mat-stroked-button
+      color="accent"
+      (click)="copyToClipboard(baseUrl + invitation.uuid)"
+    >
+      <em class="mdi mdi-file-link-outline mdi-18px"></em>
+      Copiar URL
+    </button>
+    <hr>
+  </div>
+</div>

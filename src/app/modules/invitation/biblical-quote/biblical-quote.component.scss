@@ -1,0 +1,61 @@
+@import '~src/assets/stylesheets/colors';
+
+@media (max-width: 699px) {
+  .biblical-quote-text {
+    margin-top: 23px !important;
+    font-size: 12px !important;
+  }
+
+  .quotes {
+    font-size: 12px !important;
+  }
+}
+
+.biblical-quote-container {
+  border-width: 1.5px;
+  border-style: solid;
+  border-color: $primary-color;
+  height: auto;
+  background: white;
+  padding: 1.5rem;
+}
+
+.biblical-quote-container-2 {
+  border-width: 1.5px;
+  border-style: solid;
+  border-color: $primary-color;
+  padding: .2rem;
+  background: white;
+}
+
+.biblical-quote-text {
+  text-transform: uppercase;
+}
+
+.quote {
+  margin-top: 15px;
+  text-align: right;
+  color: $primary-color;
+}
+
+.biblical-quote-flower-left {
+  background-image: url(~src/assets/img/flower-corner-left.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: -2px;
+  left: -2px;
+}
+
+.biblical-quote-flower-right {
+  background-image: url(~src/assets/img/flower-corner-right.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 73px;
+  height: 100px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}

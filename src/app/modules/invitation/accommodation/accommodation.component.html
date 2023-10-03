@@ -1,0 +1,42 @@
+<div *ngIf="lang != 'en'">
+  <app-title-leaf>
+    ¿Dónde te puedes hospedar?
+  </app-title-leaf>
+
+  <div *ngFor="let hotel of hotels" class="wow animate__animated animate__slow animate__backInUp">
+    <div class="sub-title mt-5 cursive primary-text">
+      {{ hotel.name }}
+    </div>
+
+    <div class="text-center ps-5 pe-5 pb-1 pt-1">
+      <a *ngIf="hotel.link" [href]="hotel.link" target="_blank">
+        <button mat-stroked-button color="accent">
+          <em class="mdi mdi-web"></em>
+          Ver pagína web
+        </button>
+      </a>
+
+      &ngsp;&ngsp;
+
+      <a *ngIf="hotel.telephone" [href]="'tel:' + hotel.telephone">
+        <button mat-stroked-button color="accent">
+          <em class="mdi mdi-phone"></em>
+          Llama
+        </button>
+      </a>
+    </div>
+  </div>
+
+  <div *ngIf="airbnbs.length != 0" class="text-center ps-5 pe-5 pb-5 pt-5">
+    <img class="pb-4" src="assets/img/airbnb.png" width="50%">
+
+    <div *ngFor="let airbnb of airbnbs; let i = index" class="wow animate__animated animate__slow animate__backInUp pt-3">
+      <a [href]="airbnb">
+        <button mat-stroked-button color="accent">
+          <em class="mdi mdi-web"></em>
+          Ver opción {{ i + 1 }}
+        </button>
+      </a>
+    </div>
+  </div>
+</div>

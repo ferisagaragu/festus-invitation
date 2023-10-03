@@ -1,0 +1,37 @@
+<div *ngIf="lang != 'en'" class="mt-5 mb-5">
+  <app-title-leaf>
+    Formal
+  </app-title-leaf>
+
+  <div class="sub-title ps-5 pe-5 pt-3" style="font-size: 16px">
+    (Color blanco y rosa palo a reserva de la novia)
+  </div>
+
+  <div class="text-center mt-4">
+    <img *ngIf="!largeAdvice" class="wow animate__animated animate__slow animate__backInUp" src="assets/img/code.png">
+    <img *ngIf="largeAdvice" class="wow animate__animated animate__slow animate__backInUp" src="assets/img/code_large.png">
+  </div>
+</div>
+
+<div *ngIf="lang == 'en'" class="mt-5 mb-5">
+  <app-title-leaf>
+    Formal dress code
+  </app-title-leaf>
+
+  <div class="text-center mt-4">
+    <img class="wow animate__animated animate__slow animate__backInUp" src="assets/img/code.png">
+  </div>
+
+  <div class="mt-4 wow animate__animated animate__slow animate__backInUp ps-5 pe-5 pt-3">
+    <strong>Women:</strong> Formal beach attire. light color scheme
+  </div>
+
+  <div class="mt-4 wow animate__animated animate__slow animate__backInUp ps-5 pe-5">
+    <strong>Men:</strong> Mandatory guayabera shirt. White or beige colors
+  </div>
+
+  <div class="mt-4 wow animate__animated animate__slow animate__backInUp ps-5 pe-5">
+    <strong>Note:</strong> Women, avoid wearing high heels. The ceremony will take place at the beach
+    and you might have difficulties because of the sand. Flats, sandals or wedge shoes are recommended.
+  </div>
+</div>

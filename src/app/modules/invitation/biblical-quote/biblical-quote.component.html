@@ -1,0 +1,24 @@
+<div class="mt-5">
+  <div class="mb-4">
+    <app-container-separator [invert]="false" [type]="2"></app-container-separator>
+  </div>
+
+  <app-title-leaf>
+    Cita biblica
+  </app-title-leaf>
+
+  <div class="ps-4 pe-4 pb-5 pt-5">
+    <div class="biblical-quote-container-2">
+      <div class="biblical-quote-container wow animate__animated animate__slow animate__rotateInDownLeft">
+        {{ biblicalQuote }}
+
+        <div class="text-end mt-4 biblical-quote-text">
+          {{ biblicalQuoteFrom }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <app-container-separator [invert]="true" [type]="2"></app-container-separator>
+</div>
+

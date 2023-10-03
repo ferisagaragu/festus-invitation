@@ -1,0 +1,93 @@
+<div class="row ps-4 pe-4 mb-3 pt-3">
+  <div class="col-md-9">
+    <mat-form-field
+      class="w-100 filter-margin"
+      appearance="standard"
+    >
+      <mat-label>Buscar invitados</mat-label>
+
+      <mat-chip-list
+        #chipList
+        [disabled]="disabled"
+      >
+        <mat-chip
+          *ngFor="let filter of filters"
+          class="accent-color"
+          (removed)="onRemove(filter)"
+        >
+          {{ filter.label }}
+
+          <mat-icon matChipRemove>
+            cancel
+          </mat-icon>
+        </mat-chip>
+
+        <input
+          placeholder="Agrega filtros, como Ale, Fer o estatus del invitado..."
+          #filterInput
+          [formControl]="filterFormControl"
+          [matAutocomplete]="auto"
+          [matChipInputFor]="chipList"
+        >
+      </mat-chip-list>
+
+      <mat-autocomplete
+        #auto="matAutocomplete"
+        (optionSelected)="onSelected($event)"
+      >
+      <span *ngFor="let filter of filteredFilters | async">
+        <mat-option
+          *ngIf="!filter.disabled && !notSuggest.checked"
+          [value]="filter"
+        >
+          {{ filter.label }}
+        </mat-option>
+      </span>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+
+  <div class="col-md-3">
+    <mat-form-field
+      class="w-100"
+      appearance="standard"
+      [class.reposition-family]="filters.length >= 1"
+    >
+      <mat-label>
+        Familia
+      </mat-label>
+
+      <mat-select
+        #familySelect
+        [disabled]="disabled"
+        (selectionChange)="onSelectedFamilyChange($event)"
+      >
+        <mat-option>
+          No usar familia
+        </mat-option>
+
+        <mat-option
+          *ngFor="let family of families"
+          [value]="family.familyName"
+        >
+          {{ family.familyName }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="col-md-6">
+    <mat-checkbox
+      #notSuggest
+      class="not-suggest"
+      color="primary"
+      [disabled]="disabled"
+    >
+      No sugerir filtros
+    </mat-checkbox>
+  </div>
+
+  <div class="col-md-6 text-end">
+    <ng-content></ng-content>
+  </div>
+</div>

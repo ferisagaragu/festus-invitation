@@ -1,0 +1,71 @@
+@import '~src/assets/stylesheets/colors';
+
+.title-container {
+  height: 100vh;
+  width: 100vw;
+  background-image: url('~src/assets/img/main.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.title-card-container {
+  padding: 30px;
+  height: 30vh;
+  z-index: 2;
+  position: relative;
+}
+
+.title-card {
+  color: white;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 12px !important;
+  text-align: center;
+  display: inline-block;
+  background: $primary-color-transparent;
+  padding: 12px 8px;
+}
+
+.invitation-data {
+  height: 70vh;
+  position: relative;
+  z-index: 2;
+}
+
+.invitation-data-container {
+  height: 85%;
+  width: 100%;
+}
+
+.invitation-name {
+  font-family: Alice-Regular, serif !important;
+  font-weight: lighter;
+  letter-spacing: 1px;
+  vertical-align: 1rem;
+  font-size: 48px;
+  color: white;
+  padding: 1.05rem;
+}
+
+.title-number {
+  font-size: 32px;
+  letter-spacing: 1px;
+  font-weight: 500;
+  text-transform: capitalize;
+  color: white;
+}
+
+.month-number {
+  font-size: 32px;
+  letter-spacing: 1px;
+  font-weight: 500;
+  text-transform: capitalize;
+  color: white;
+}
+
+.shadow-container {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+}

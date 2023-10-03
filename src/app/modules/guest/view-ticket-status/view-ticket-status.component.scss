@@ -1,0 +1,43 @@
+.ticket-status-container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  color: white;
+  z-index: 10000;
+}
+
+.ticket-bad {
+  background: #F44336;
+}
+
+.ticket-good {
+  background: #4CAF50;
+}
+
+.ticket-invalid {
+  background: #FDD835;
+}
+
+.icon {
+  margin-top: 100px;
+  font-size: 68px !important;
+}
+
+.icon-container {
+  padding-top: 60px;
+  padding-bottom: 20px;
+}
+
+.text {
+  font-family: JosefinSans-Regular !important;
+  font-weight: bold;
+  font-size: 22px !important;
+  color: white;
+}
+
+.row {
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}

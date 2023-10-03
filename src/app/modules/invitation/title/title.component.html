@@ -1,0 +1,43 @@
+<div class="title-container">
+
+  <div class="text-center title-card-container animate__animated animate__backInDown animate__slow wow">
+    <div class="title-card">
+      {{ title }}
+    </div>
+  </div>
+
+  <div class="invitation-data">
+    <table class="invitation-data-container">
+      <tbody>
+        <tr>
+          <td class="align-bottom text-center">
+            <span *ngIf="!invertNames" class="invitation-name">
+              {{ invitationName }}
+            </span><br><br>
+
+            <span *ngIf="invertNames" class="invitation-name">
+              {{ invitationName.split('&')[1] }} &
+              {{ invitationName.split('&')[0] }}
+            </span><br><br>
+
+            <div appCountUp class="title-number mb-2" [countUp]="day"></div>
+
+            <svg _ngcontent-wep-c19="" height="2" width="150">
+              <line x1="0" y1="0" x2="250" y2="0" style="stroke-width: 2;" [style.stroke]="primaryColor"></line>
+            </svg><br>
+
+            <div class="month-number mt-3 mb-3">
+              {{ month }}
+            </div>
+
+            <svg _ngcontent-wep-c19="" height="2" width="150">
+              <line x1="0" y1="0" x2="250" y2="0" style="stroke-width: 2;" [style.stroke]="primaryColor"></line>
+            </svg><br><br>
+
+            <div class="title-number mt-2">{{ year }}</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+<div *ngIf="load" class="pt-4">
+  <mat-spinner strokeWidth="5"></mat-spinner>
+</div>
+
+<div *ngIf="!load" class="container mt-4">
+  <div>
+    <div class="col-12 card">
+      <app-title-flower class="pt-4">
+        Con mucho cariño, te hacemos entrega de tus boletos
+      </app-title-flower>
+
+      <div class="mt-5 text-center">
+        <div *ngFor="let guest of guests; let i = index">
+          <div class="ticket-container">
+          <img class="corner-left" src="assets/img/flower-corner-left.png">
+
+          <div class="row justify-content-center">
+            <div class="col-12 text-end title">
+              {{ title }}
+            </div>
+
+            <div *ngIf="!qr" class="col-10 guest-container" [style.color]="ticketNameColor">
+              {{ guest.name }}
+            </div>
+
+            <div *ngIf="qr" class="col-12 guest-container-qr">
+              <div class="row justify-content-center">
+                <div class="col-4 mt-3" [style.color]="ticketNameColor">
+                  {{ guest.name }}
+                </div>
+
+                <div class="col-4 mt-1">
+                  <span [id]="'qr-' + i"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-9 location">
+              {{ ticketLocation }}
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

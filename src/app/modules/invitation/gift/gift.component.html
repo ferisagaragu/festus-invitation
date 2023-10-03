@@ -1,0 +1,84 @@
+<div class="mb-5">
+  <app-container-separator [invert]="false" [type]="2"></app-container-separator>
+</div>
+
+<div *ngIf="lang != 'en'">
+  <app-title-flower>
+    Mesa de regalos<br><br>
+  </app-title-flower>
+
+  <div *ngIf="gifExplication" class="sub-title pt-5 pe-5 ps-5">
+    <span #spanGifExplication></span>
+  </div>
+
+  <div *ngIf="mailRain" class="sub-title mt-5 cursive primary-text">
+    ¡Lluvia de sobres!
+  </div>
+
+  <div *ngIf="mailRain" class="wow animate__animated animate__slow animate__backInUp mt-5">
+    <app-icon-envelope></app-icon-envelope>
+  </div>
+
+  <div *ngIf="mailRain" class="pt-5 pe-5 ps-5">
+    La lluvia de sobre es la tradición de regalar dinero en
+    efectivo a los novios en un sobre el día del evento.
+  </div>
+
+  <div *ngIf="mailRain && type !== 'XV'" class="pt-5 pe-5 ps-5 text-center">
+    <em>
+      Gracias por formar parte de este día tan especial
+      Si deseas tener un detalle <strong>¡suma kilómetros a nuestra luna de miel!</strong>
+      puedes dejar tu granito de arena en un sobre que estará disponible el día del evento.
+    </em>
+  </div>
+
+  <div *ngFor="let gift of gifts" class="text-center">
+    <img class="wow animate__animated animate__slow animate__backInUp" height="250" [src]="'assets/img/' + gift.type + '.png'">
+    <a [href]="gift.link" target="_blank">
+      <button mat-stroked-button color="primary">
+        <em class="mdi mdi-gift"></em>
+        Ir a mesa de regalos
+      </button>
+    </a>
+  </div>
+
+  <div *ngFor="let bank of banks">
+    <div class="mt-4 text-center">
+      <img class="wow animate__animated animate__slow animate__backInUp" height="250" [src]="'assets/img/' + bank.bankType + '.png'">
+      {{ bank.backAccountTitle ? bank.backAccountTitle : 'Número de cuenta:' }} <code>{{ bank.bankAccount }}</code> <br>
+      {{ bank.bankName }}
+    </div>
+  </div>
+</div>
+
+<div *ngIf="lang == 'en'">
+  <app-title-flower>
+    Gift table<br><br>
+  </app-title-flower>
+
+  <div *ngIf="mailRain" class="sub-title mt-5 cursive primary-text">
+    Envelope rain!
+  </div>
+
+  <div *ngIf="mailRain" class="wow animate__animated animate__slow animate__backInUp mt-5">
+    <app-icon-envelope></app-icon-envelope>
+  </div>
+
+  <div *ngIf="!mailRain" class="pt-5 pe-5 ps-5">
+    La lluvia de sobre es la tradición de regalar dinero en
+    efectivo a los novios en un sobre el día del evento.
+  </div>
+
+  <div *ngIf="mailRain" class="pt-5 pe-5 ps-5 text-center">
+    <em>
+      Thank you for being part of this our special day.
+      If you wish to  contribute to our “add kilometers to our honey moon” gift,
+      feel free to do so by placing your kind contribution in the envelope which will be
+      available the day of the event.
+    </em>
+  </div>
+</div>
+
+<div class="mt-5 mb-5">
+  <app-container-separator [invert]="true" [type]="2"></app-container-separator>
+</div>

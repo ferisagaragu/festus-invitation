@@ -1,0 +1,26 @@
+<div class="mt-5">
+  <app-title-flower>
+    Nuestro filtro para tus fotos
+  </app-title-flower>
+
+  <div class="text-center mt-5">
+    Usa nuestro filtro para tus fotos con los hastag
+    <strong>
+      #FestusPlanner #{{ invitationName.replace(' ', '').replace('& ', '&') }}
+    </strong>
+  </div>
+
+  <div class="box-f">
+    <a [href]="filterFacebook" target="_blank">
+      <em class="mdi mdi-facebook"></em>
+    </a>
+  </div>
+
+  <div class="box-i">
+    <a [href]="filterInstagram" target="_blank">
+      <em class="mdi mdi-instagram"></em>
+    </a>
+  </div>
+
+  <app-container-separator [invert]="true" [type]="2"></app-container-separator>
+</div>
