@@ -1,0 +1,94 @@
+@import '~@angular/material/theming';
+@import 'colors';
+@include mat-core();
+
+$primary-material-color: (
+  500: $primary-color,
+  contrast: (
+    500: $primary-background
+  )
+);
+
+$accent-material-color: (
+  500: $accent-color,
+  contrast: (
+    500: $accent-background
+  )
+);
+
+$palette-primary: mat-palette($primary-material-color, 500);
+$palette-accent: mat-palette($accent-material-color, 500);
+$theme: mat-light-theme($palette-primary, $palette-accent);
+
+@include angular-material-theme($theme);
+
+* {
+  font-family: JosefinSans-Regular;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0 !important;
+  background: rgb(19, 19, 19) !important;
+  color: white !important;
+}
+
+.primary-color {
+  color: $primary-background !important;
+  background: $primary-color !important;
+}
+
+.primary-color>.mat-icon {
+  color: $primary-background !important;
+}
+
+.accent-color {
+  color: $accent-background !important;
+  background: $accent-color !important;
+}
+
+.accent-color>.mat-icon {
+  color: $accent-background !important;
+}
+
+.primary-text {
+  color: $primary-color !important;
+}
+
+.accent-text {
+  color: $accent-color !important;
+}
+
+.micro-fab {
+  width: 24px !important;
+  height: 24px !important;
+  background: white !important;
+}
+
+.micro-fab>span>em {
+  position: absolute;
+  transform: translateY(-14px) translateX(-6.5px) !important;
+}
+
+table {
+  width: 100%;
+}
+
+canvas {
+  display: contents;
+}
+
+carousel {
+  z-index: 1000 !important;
+}
+
+.mat-stroked-button {
+  border-color: #D0B072 !important;
+}
+
+.mat-card {
+  background: black !important;
+}

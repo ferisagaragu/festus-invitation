@@ -1,0 +1,45 @@
+@import 'colors';
+
+.title {
+  width: 100%;
+  text-align: center;
+  font-size: 22px;
+  color: $accent-color;
+}
+
+.title-cursive {
+  font-family: GreatVibes-Regular;
+  width: 100%;
+  text-align: center;
+  font-size: 22px;
+  color: $accent-color;
+  letter-spacing: 2px;
+}
+
+.title-flower {
+  height: 70px;
+}
+
+.title-flower-text {
+  width: 100%;
+  text-align: center;
+  font-size: 22px;
+  color: $accent-color;
+}
+
+.sub-title {
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  color: $primary-color;
+}
+
+.title-before-margin {
+  margin-top: 68px;
+}
+
+.cursive {
+  font-family: GreatVibes-Regular !important;
+  font-size: 18px;
+  font-weight: bold;
+}
